@@ -22,6 +22,10 @@
         <input type="text" name="kategori" class="form-control" placeholder="Kategori">
     </div>
 
+    <div class="mb-3">
+        <input type="file" name="foto" class="form-control" required>
+    </div>
+    
     <button class="btn btn-success">Simpan</button>
 </form>
 @endsection

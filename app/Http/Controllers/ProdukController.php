@@ -42,26 +42,30 @@ class ProdukController extends Controller
     public function store(Request $request)
     {
         // VALIDASI
-        $request->validate([
-            'nama_produk' => 'required',
-            'harga'       => 'required|numeric',
-            'stok'        => 'required|numeric',
-            'kategori'    => 'required',
-            'foto'        => 'required|image'
-        ]);
+// VALIDASI
+$request->validate([
+    'nama_produk' => 'required',
+    'harga'       => 'required|numeric',
+    'stok'        => 'required|numeric',
+    'kategori'    => 'required',
+    'foto'        => 'required|image|mimes:jpg,jpeg,png|max:2048'
+]);
 
-        // UPLOAD FOTO
-        $foto = $request->file('foto')->store('produk', 'public');
+// UPLOAD FOTO
+$foto = $request->file('foto')->store('produk', 'public');
 
-        Produk::create([
-            'nama_produk' => $request->nama_produk,
-            'harga'       => $request->harga,
-            'stok'        => $request->stok,
-            'kategori'    => $request->kategori,
-            'foto'        => $foto
-        ]);
+// SIMPAN KE DB
+Produk::create([
+    'id_penjual'  => session('penjual')->id_penjual, // 🔥 PENTING
+    'nama_produk' => $request->nama_produk,
+    'harga'       => $request->harga,
+    'stok'        => $request->stok,
+    'kategori'    => $request->kategori,
+    'foto'        => $foto
+]);
 
-        return redirect('/dashboard')->with('success', 'Produk berhasil ditambahkan');
+return redirect('/dashboard')->with('success', 'Produk berhasil ditambahkan');
+
     }
 
     /* ===============================

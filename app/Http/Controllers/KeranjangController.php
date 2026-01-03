@@ -59,7 +59,17 @@ public function kurang($id)
 
     public function hapus($id)
     {
-        KeranjangDetail::destroy($id);
-        return redirect('/keranjang');
+        $item = KeranjangDetail::findOrFail($id);
+    
+        if ($item->jumlah > 1) {
+            // kalau jumlah > 1 → kurangin 1
+            $item->decrement('jumlah');
+        } else {
+            // kalau jumlah = 1 → baru hapus row
+            $item->delete();
+        }
+    
+        return back();
     }
+
 }
