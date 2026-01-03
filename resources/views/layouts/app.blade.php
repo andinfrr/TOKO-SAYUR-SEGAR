@@ -52,19 +52,7 @@
 
 <div class="container mt-4">
 
-    {{-- MENU KATEGORI --}}
-    @isset($kategori)
-    <ul class="nav mb-3">
-        @foreach($kategori as $k)
-        <li class="nav-item">
-            <a class="nav-link text-dark"
-               href="/kategori/{{ $k->kategori }}">
-               {{ $k->kategori }}
-            </a>
-        </li>
-        @endforeach
-    </ul>
-    @endisset
+    
 
     @yield('content')
 </div>

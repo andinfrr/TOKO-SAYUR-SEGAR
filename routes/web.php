@@ -103,3 +103,9 @@ Route::get('/keranjang/kurang/{id}', [KeranjangController::class, 'kurang']);
 Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+//KATEGORI NIH
+Route::get('/', [ProdukController::class, 'index'])->name('produk.index');
+
+Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
+    ->name('produk.kategori');
