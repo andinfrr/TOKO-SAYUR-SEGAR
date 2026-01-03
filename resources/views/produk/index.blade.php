@@ -3,6 +3,20 @@
 @section('content')
 <div class="row">
 
+{{-- MENU KATEGORI --}}
+    @isset($kategori)
+    <ul class="nav mb-3">
+        @foreach($kategori as $k)
+        <li class="nav-item">
+            <a class="nav-link text-dark"
+               href="/kategori/{{ $k->kategori }}">
+               {{ $k->kategori }}
+            </a>
+        </li>
+        @endforeach
+    </ul>
+    @endisset
+
 @foreach($produk as $p)
 <div class="col-md-3 mb-4 d-flex">
     {{-- CARD --}}

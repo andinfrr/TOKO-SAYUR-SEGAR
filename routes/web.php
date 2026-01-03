@@ -115,3 +115,9 @@ Route::get('/invoice', function () {
         'keranjang' => $invoice['items']
     ]);
 });
+
+//KATEGORI NIH
+Route::get('/', [ProdukController::class, 'index'])->name('produk.index');
+
+Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
+    ->name('produk.kategori');

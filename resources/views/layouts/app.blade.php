@@ -52,6 +52,7 @@
 
 <div class="container mt-4">
 
+
             @if(session('success'))
 <div class="alert alert-success text-center">
     {{ session('success') }}
@@ -70,6 +71,8 @@
         @endforeach
     </ul>
     @endisset
+    
+
     @yield('content')
 </div>
 

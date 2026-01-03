@@ -31,6 +31,16 @@ class ProdukController extends Controller
         ]);
     }
 
+     public function kategori($kategori)
+    {
+        $produk = Produk::where('kategori', $kategori)->get();
+
+        return view('produk.kategori', [
+            'produk' => $produk,
+            'kategori' => $kategori
+        ]);
+    }
+
     /* ===============================
        TAMBAH PRODUK
     =============================== */
