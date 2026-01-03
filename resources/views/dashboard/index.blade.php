@@ -3,10 +3,12 @@
 @section('content')
 <h3 class="mb-4 text-success">Dashboard Penjual</h3>
 
-{{-- ================= TOTAL ORDER & PENDAPATAN ================= --}}
-<div class="row mb-4">
-    <div class="col-md-6">
-        <div class="card text-bg-success">
+{{-- ================= TOTAL ORDER | PENDAPATAN | TAMBAH PRODUK ================= --}}
+<div class="row mb-4 align-items-stretch">
+
+    {{-- TOTAL ORDER --}}
+    <div class="col-md-4">
+        <div class="card text-bg-success h-100">
             <div class="card-body">
                 <h5>Total Order</h5>
                 <h2>{{ $totalOrder }}</h2>
@@ -14,14 +16,28 @@
         </div>
     </div>
 
-    <div class="col-md-6">
-        <div class="card text-bg-success">
+    {{-- TOTAL PENDAPATAN --}}
+    <div class="col-md-4">
+        <div class="card text-bg-success h-100">
             <div class="card-body">
                 <h5>Total Pendapatan</h5>
                 <h2>Rp {{ number_format($totalPendapatan) }}</h2>
             </div>
         </div>
     </div>
+
+    {{-- TAMBAH PRODUK --}}
+    <div class="col-md-4">
+        <div class="card border-success h-100">
+            <div class="card-body d-flex flex-column justify-content-center">
+                <a href="{{ url('/produk/create') }}"
+                   class="btn btn-success btn-lg w-100">
+                    + Tambah Produk
+                </a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 {{-- ================= PRODUK TERLARIS ================= --}}
