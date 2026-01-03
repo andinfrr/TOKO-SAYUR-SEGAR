@@ -16,31 +16,36 @@ class AuthController extends Controller
 
    public function login(Request $request)
 {
-    // 1️⃣ CEK PENJUAL (PAKE nama_penjual)
+    // ===============================
+    // 1️⃣ LOGIN PENJUAL (nama_penjual + password plain)
+    // ===============================
     $penjual = DB::table('penjual')
         ->where('nama_penjual', $request->username)
         ->first();
 
-if ($penjual && $request->password === $penjual->password) {
-    Session::put('penjual', $penjual);
-    return redirect('/dashboard');
-}
+    if ($penjual && $request->password === $penjual->password) {
+        Session::put('penjual', $penjual);
+        return redirect('/dashboard');
+    }
 
-
-    // 2️⃣ CEK CUSTOMER (PAKE email)
+    // ===============================
+    // 2️⃣ LOGIN CUSTOMER (email + bcrypt)
+    // ===============================
     $customer = DB::table('customer')
         ->where('email', $request->username)
         ->first();
 
-    if ($customer && Hash::check($request->password, $customer->password)) {
-        Session::put('customer', $customer);
-        return redirect('/');
-    }
-
-    // 3️⃣ GAGAL SEMUA
-    return back()->with('error', 'Username atau password salah');
+if ($customer && $request->password === $customer->password) {
+    Session::put('customer', $customer);
+    return redirect('/');
 }
 
+
+    // ===============================
+    // 3️⃣ GAGAL SEMUA
+    // ===============================
+    return back()->with('error', 'Username atau password salah');
+}
 
 
     // public function login(Request $request)
@@ -67,7 +72,7 @@ if ($penjual && $request->password === $penjual->password) {
         DB::table('customer')->insert([
             'nama' => $request->nama,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password, 
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat
         ]);

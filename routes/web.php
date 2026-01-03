@@ -45,3 +45,6 @@ Route::get('/penjual/login', [PenjualAuthController::class, 'loginForm']);
 Route::post('/penjual/login', [PenjualAuthController::class, 'login']);
 Route::get('/penjual/logout', [PenjualAuthController::class, 'logout']);
 
+
+Route::post('/keranjang/tambah', [KeranjangController::class, 'tambah']);
+

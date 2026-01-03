@@ -29,12 +29,12 @@
 
         {{-- JIKA CUSTOMER --}}
         @elseif(session()->has('customer'))
-            <a href="/keranjang" class="btn btn-light btn-sm me-2">
-                🛒 Keranjang
-            </a>
             <span class="text-white fw-bold me-2">
                 Halo, {{ session('customer')->nama }}
             </span>
+            <a href="/keranjang" class="btn btn-light btn-sm me-2">
+                🛒 Keranjang
+            </a>
             <a href="/logout" class="btn btn-light btn-sm">
                 Logout
             </a>
