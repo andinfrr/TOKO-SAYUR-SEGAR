@@ -17,25 +17,45 @@ class KeranjangController extends Controller
         return view('keranjang.index', compact('keranjang'));
     }
 
-    public function tambah($id_produk)
+     public function tambah(Request $request)
     {
+        $id_produk = $request->id_produk;
+        $jumlah    = $request->jumlah;
+
         $produk = Produk::findOrFail($id_produk);
 
+        // cek item di keranjang (TANPA id_customer)
         $item = KeranjangDetail::where('id_produk', $id_produk)->first();
 
         if ($item) {
-            if ($item->jumlah < $produk->stok) {
-                $item->increment('jumlah');
+            if ($item->jumlah + $jumlah <= $produk->stok) {
+                $item->update([
+                    'jumlah' => $item->jumlah + $jumlah
+                ]);
             }
         } else {
             KeranjangDetail::create([
                 'id_produk' => $id_produk,
-                'jumlah' => 1
+                'jumlah'    => $jumlah
             ]);
         }
 
-        return redirect('/');
+        return back()->with('success', 'Produk ditambahkan ke keranjang');
     }
+
+public function kurang($id)
+{
+    $item = KeranjangDetail::findOrFail($id);
+
+    if ($item->jumlah > 1) {
+        $item->decrement('jumlah');
+    } else {
+        // kalau jumlah = 1, hapus produknya
+        $item->delete();
+    }
+
+    return back();
+}
 
     public function hapus($id)
     {
