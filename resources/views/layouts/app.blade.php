@@ -52,6 +52,11 @@
 
 <div class="container mt-4">
 
+            @if(session('success'))
+<div class="alert alert-success text-center">
+    {{ session('success') }}
+</div>
+@endif
     {{-- MENU KATEGORI --}}
     @isset($kategori)
     <ul class="nav mb-3">
@@ -65,9 +70,9 @@
         @endforeach
     </ul>
     @endisset
-
     @yield('content')
 </div>
+
 
 </body>
 </html>

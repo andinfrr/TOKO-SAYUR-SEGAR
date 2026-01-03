@@ -8,7 +8,7 @@
 
 <div class="mb-3">
     <label>Alamat Kirim</label>
-    <textarea name="alamat_kirim" class="form-control" required></textarea>
+    <textarea name="alamat" class="form-control" required></textarea>
 </div>
 
 <div class="mb-3">
@@ -27,5 +27,6 @@
 <button class="btn btn-success">
     Proses Checkout
 </button>
+
 </form>
 @endsection

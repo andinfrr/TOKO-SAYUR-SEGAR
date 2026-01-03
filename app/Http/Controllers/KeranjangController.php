@@ -10,9 +10,19 @@ class KeranjangController extends Controller
 {
     public function index()
     {
-        $keranjang = KeranjangDetail::join('produk', 'produk.id_produk', '=', 'keranjang_detail.id_produk')
-            ->select('keranjang_detail.*', 'produk.nama_produk', 'produk.harga')
-            ->get();
+$keranjang = KeranjangDetail::join(
+        'produk',
+        'produk.id_produk',
+        '=',
+        'keranjang_detail.id_produk'
+    )
+    ->select(
+        'keranjang_detail.*',
+        'produk.nama_produk',
+        'produk.harga'
+    )
+    ->get();
+
 
         return view('keranjang.index', compact('keranjang'));
     }
@@ -60,7 +70,7 @@ public function kurang($id)
     public function hapus($id)
     {
         $item = KeranjangDetail::findOrFail($id);
-    
+
         if ($item->jumlah > 1) {
             // kalau jumlah > 1 → kurangin 1
             $item->decrement('jumlah');
@@ -68,7 +78,7 @@ public function kurang($id)
             // kalau jumlah = 1 → baru hapus row
             $item->delete();
         }
-    
+
         return back();
     }
 

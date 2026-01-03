@@ -103,3 +103,15 @@ Route::get('/keranjang/kurang/{id}', [KeranjangController::class, 'kurang']);
 Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
+
+// invoiceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+Route::get('/invoice', function () {
+    if (!session()->has('invoice')) {
+        return redirect('/');
+    }
+
+    $invoice = session('invoice');
+    return view('invoice.index', [
+        'keranjang' => $invoice['items']
+    ]);
+});
