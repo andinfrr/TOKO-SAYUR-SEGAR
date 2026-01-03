@@ -3,6 +3,7 @@
 @section('content')
 <h3 class="mb-4 text-success">Dashboard Penjual</h3>
 
+{{-- ================= TOTAL ORDER & PENDAPATAN ================= --}}
 <div class="row mb-4">
     <div class="col-md-6">
         <div class="card text-bg-success">
@@ -23,7 +24,8 @@
     </div>
 </div>
 
-<div class="card">
+{{-- ================= PRODUK TERLARIS ================= --}}
+<div class="card mb-4">
     <div class="card-header bg-success text-white">
         Produk Terlaris
     </div>
@@ -37,8 +39,10 @@
             @endforeach
         </ul>
     </div>
+</div>
 
-    <div class="card mt-4">
+{{-- ================= METODE PEMBAYARAN ================= --}}
+<div class="card mb-4">
     <div class="card-header bg-success text-white">
         Metode Pembayaran
     </div>
@@ -53,18 +57,16 @@
             <tbody>
                 @foreach($metodePembayaran as $m)
                 <tr>
-                    <!-- <td>{{ $m->metode_pembayaran }}</td> -->
-                     <td>
-    @switch($m->metode_pembayaran)
-        @case('COD') COD @break
-        @case('TRANSFER_BRI') Transfer BRI @break
-        @case('TRANSFER_BCA') Transfer BCA @break
-        @case('TRANSFER_MANDIRI') Transfer Mandiri @break
-        @case('E_WALLET') E-Wallet @break
-        @default Lainnya
-    @endswitch
-</td>
-
+                    <td>
+                        @switch($m->metode_pembayaran)
+                            @case('COD') COD @break
+                            @case('TRANSFER_BRI') Transfer BRI @break
+                            @case('TRANSFER_BCA') Transfer BCA @break
+                            @case('TRANSFER_MANDIRI') Transfer Mandiri @break
+                            @case('E_WALLET') E-Wallet @break
+                            @default Lainnya
+                        @endswitch
+                    </td>
                     <td>{{ $m->total_order }}</td>
                 </tr>
                 @endforeach
@@ -73,5 +75,49 @@
     </div>
 </div>
 
+{{-- ================= KELOLA PRODUK ================= --}}
+<div class="card mt-4">
+    <div class="card-header bg-success text-white">
+        Kelola Produk
+    </div>
+
+    <div class="card-body">
+        <div class="row">
+            @foreach($produk as $p)
+            <div class="col-md-3 mb-4">
+                <div class="card h-100">
+
+                    {{-- FOTO PRODUK --}}
+                    <img src="{{ asset('storage/'.$p->foto) }}"
+                         class="card-img-top"
+                         style="height:160px;object-fit:cover">
+
+                    {{-- INFO PRODUK --}}
+                    <div class="card-body">
+                        <h6 class="fw-bold">{{ $p->nama_produk }}</h6>
+
+                        <p class="mb-1 text-success">
+                            Rp {{ number_format($p->harga) }}
+                        </p>
+
+                        <small class="text-muted">
+                            Stok: {{ $p->stok }}
+                        </small>
+                    </div>
+
+                    {{-- TOMBOL EDIT --}}
+                    <div class="card-footer bg-white border-0">
+                        <a href="{{ url('/produk/'.$p->id_produk.'/edit') }}"
+                           class="btn btn-success btn-sm w-100">
+                            Edit Produk
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </div>
 </div>
+
 @endsection
