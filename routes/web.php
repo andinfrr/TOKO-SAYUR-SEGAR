@@ -121,3 +121,35 @@ Route::get('/', [ProdukController::class, 'index'])->name('produk.index');
 
 Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
     ->name('produk.kategori');
+
+
+//anu loginnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
+
+
+
+Route::post('/keranjang/tambah', function (\Illuminate\Http\Request $request) {
+    // cek login customer
+    if (!session()->has('customer')) {
+        return redirect('/login')->with('error', 'Silahkan login terlebih dulu.');
+    }
+
+    // ambil keranjang dari session, default kosong
+    $keranjang = session()->get('keranjang', []);
+
+    // tambah produk baru ke keranjang
+    $produk = [
+        'id_keranjang_detail' => rand(1,1000), // id unik sementara
+        'nama_produk' => $request->nama_produk,
+        'harga' => $request->harga,
+        'jumlah' => $request->jumlah
+    ];
+
+    $keranjang[] = $produk;
+
+    // simpan kembali ke session
+    session(['keranjang' => $keranjang]);
+
+    // redirect ke halaman keranjang (GET /keranjang)
+    return redirect('/keranjang')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
+});
+
