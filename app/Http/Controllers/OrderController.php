@@ -76,4 +76,25 @@ session()->forget('penjual'); // 🔥 PENTING
     return redirect('/invoice');
     
 }
+
+public function updateStatus(Request $request, $id)
+{
+    DB::table('order')
+        ->where('id_order', $id)
+        ->update([
+            'status_order' => $request->status_order
+        ]);
+
+    return back()->with('success', 'Status order berhasil diupdate');
+}
+
+public function detail($id)
+{
+    $detail = DB::table('v_detail_order')
+        ->where('id_order', $id)
+        ->get();
+
+    return response()->json($detail);
+}
+
 }
