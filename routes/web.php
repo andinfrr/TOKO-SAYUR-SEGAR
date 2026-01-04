@@ -46,8 +46,6 @@ Route::post('/produk/{id}', [ProdukController::class, 'update']);
 Route::get('/keranjang', [KeranjangController::class, 'index']);
 
 // Route::get('/keranjang/tambah/{id_produk}', [KeranjangController::class, 'tambah']);
-
-Route::get('/keranjang/tambah/{id_produk}', [KeranjangController::class, 'tambah']);
 Route::post('/keranjang/tambah', [KeranjangController::class, 'tambah']);
 
 Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus']);
@@ -128,31 +126,40 @@ Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
 
 
 
-Route::post('/keranjang/tambah', function (\Illuminate\Http\Request $request) {
-    // cek login customer
-    if (!session()->has('customer')) {
-        return redirect('/login')->with('error', 'Silahkan login terlebih dulu.');
-    }
+// Route::post('/keranjang/tambah', function (\Illuminate\Http\Request $request) {
+//     // cek login customer
+//     if (!session()->has('customer')) {
+//         return redirect('/login')->with('error', 'Silahkan login terlebih dulu.');
+//     }
 
-    // ambil keranjang dari session, default kosong
-    $keranjang = session()->get('keranjang', []);
+//     // ambil keranjang dari session, default kosong
+//     $keranjang = session()->get('keranjang', []);
 
-    // tambah produk baru ke keranjang
-    $produk = [
-        'id_keranjang_detail' => rand(1,1000), // id unik sementara
-        'nama_produk' => $request->nama_produk,
-        'harga' => $request->harga,
-        'jumlah' => $request->jumlah
-    ];
+//     // tambah produk baru ke keranjang
+//     $produk = [
+//         'id_keranjang_detail' => rand(1,1000), // id unik sementara
+//         'nama_produk' => $request->nama_produk,
+//         'harga' => $request->harga,
+//         'jumlah' => $request->jumlah
+//     ];
 
-    $keranjang[] = $produk;
+//     $keranjang[] = $produk;
 
-    // simpan kembali ke session
-    session(['keranjang' => $keranjang]);
+//     // simpan kembali ke session
+//     session(['keranjang' => $keranjang]);
 
-    // redirect ke halaman keranjang (GET /keranjang)
-    return redirect('/keranjang')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
-});
+//     // redirect ke halaman keranjang (GET /keranjang)
+//     return redirect('/keranjang')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
+// });
+
+
+
+
+
+
+
+
+
 
     //INI NIH ORDER
 Route::put('/order/{id}/status', [OrderController::class, 'updateStatus'])
