@@ -22,9 +22,9 @@
         <option value="Bank">Transfer Bank BRI</option>
         <option value="Bank">Transfer Bank BCA</option>
         <option value="Bank">Transfer Bank Mandiri</option>
-        <option value="E_wallet">Gopay</option>
-        <option value="E_wallet">DANA</option>
-        <option value="E_wallet">OVO</option>
+        <option value="E-wallet">Gopay</option>
+        <option value="E-wallet">DANA</option>
+        <option value="E-wallet">OVO</option>
     </select>
 </div>
 
