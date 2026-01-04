@@ -15,11 +15,16 @@
     <label class="form-label">Metode Pembayaran</label>
     <select name="metode_pembayaran" class="form-control" required>
         <option value="">-- Pilih Metode Pembayaran --</option>
-        <option value="COD">COD (Bayar di Tempat)</option>
-        <option value="TRANSFER_BRI">Transfer Bank BRI</option>
-        <option value="TRANSFER_BCA">Transfer Bank BCA</option>
-        <option value="TRANSFER_MANDIRI">Transfer Bank Mandiri</option>
-        <option value="E_WALLET">E-Wallet</option>
+        <option value="QRIS">QRIS</option>
+        <option value="Virtual Account">BRIVA</option>
+        <option value="Virtual Account">BCA VA</option>
+        <option value="Virtual Account">VA Mandiri</option>
+        <option value="Bank">Transfer Bank BRI</option>
+        <option value="Bank">Transfer Bank BCA</option>
+        <option value="Bank">Transfer Bank Mandiri</option>
+        <option value="E_wallet">Gopay</option>
+        <option value="E_wallet">DANA</option>
+        <option value="E_wallet">OVO</option>
     </select>
 </div>
 
