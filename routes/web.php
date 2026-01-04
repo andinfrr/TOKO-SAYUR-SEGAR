@@ -123,6 +123,7 @@ Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
     ->name('produk.kategori');
 
 
+
 //anu loginnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn
 
 
@@ -152,4 +153,12 @@ Route::post('/keranjang/tambah', function (\Illuminate\Http\Request $request) {
     // redirect ke halaman keranjang (GET /keranjang)
     return redirect('/keranjang')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
 });
+
+    //INI NIH ORDER
+Route::put('/order/{id}/status', [OrderController::class, 'updateStatus'])
+    ->name('order.updateStatus');
+
+//INI DETAIL ORDER
+Route::get('/order/{id}/detail', [OrderController::class, 'detail'])
+    ->name('order.detail');
 

@@ -21,6 +21,13 @@ class DashboardController extends Controller
             ->select(DB::raw('SUM(jumlah * harga_satuan) as total'))
             ->value('total');
 
+
+         // ================= ORDERAN MASUK (PAKE VIEW) =================
+        $orderMasuk = DB::table('v_laporan_order')
+            ->orderByDesc('tanggal_order')
+            ->get();
+
+
         // ================= PRODUK TERLARIS =================
         $produkTerlaris = DB::table('order_detail')
             ->join('produk', 'produk.id_produk', '=', 'order_detail.id_produk')
@@ -49,6 +56,7 @@ class DashboardController extends Controller
         return view('dashboard.index', compact(
             'totalOrder',
             'totalPendapatan',
+            'orderMasuk',
             'produkTerlaris',
             'metodePembayaran',
             'produk'
