@@ -48,12 +48,15 @@
 
           <div class="mb-3">
             <label class="form-label fw-semibold">Kategori</label>
-            <input type="text"
-                   name="kategori"
-                   class="form-control"
-                   placeholder="Sayur Daun / Umbi / Buah"
-                   required>
-          </div>
+            <select class="form-control" name="kategori" required>
+              <option value="">--Pilih Kategori Sayuran --</option>
+              <option value="sayur">sayuran</option>
+              <option value="buah">Umbi-umbian</option>
+              <option value="bumbu">Rempah</option>
+              <option value="sembako">Kacang-kacangan</option>
+              <option value="sembako">Jamur</option>
+              <option value="sembako">Produk olahan</option>
+          </select>
 
           <div class="mb-4">
             <label class="form-label fw-semibold">Foto Sayur</label>
