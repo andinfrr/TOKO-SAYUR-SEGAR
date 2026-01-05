@@ -85,9 +85,6 @@ class OrderController extends Controller
                 'jumlah'        => $k->jumlah,
                 'harga_satuan'  => $k->harga,
             ]);
-
-            Produk::where('id_produk', $k->id_produk)
-                ->decrement('stok', $k->jumlah);
         }
 
         // ===============================
