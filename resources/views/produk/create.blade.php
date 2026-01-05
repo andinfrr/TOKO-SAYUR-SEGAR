@@ -50,12 +50,12 @@
             <label class="form-label fw-semibold">Kategori</label>
             <select class="form-control" name="kategori" required>
               <option value="">--Pilih Kategori Sayuran --</option>
-              <option value="sayur">sayuran</option>
-              <option value="buah">Umbi-umbian</option>
-              <option value="bumbu">Rempah</option>
-              <option value="sembako">Kacang-kacangan</option>
-              <option value="sembako">Jamur</option>
-              <option value="sembako">Produk olahan</option>
+              <option value="sayuran">Sayuran</option>
+              <option value="Umbi-umbian">Umbi-umbian</option>
+              <option value="Rempah">Rempah</option>
+              <option value="Kacang-kacangan">Kacang-kacangan</option>
+              <option value="Jamur">Jamur</option>
+              <option value="Produk olahan">Produk olahan</option>
           </select>
 
           <div class="mb-4">

@@ -24,7 +24,7 @@
 
         {{-- GAMBAR --}}
         <img src="{{ asset('storage/'.$p->foto) }}"
-             class="card-img-top product-img">
+        class="card-img-top" style="height:160px;object-fit:cover">
 
         {{-- ISI --}}
         <div class="card-body d-flex flex-column">

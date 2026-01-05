@@ -152,15 +152,6 @@ Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
 //     return redirect('/keranjang')->with('success', 'Produk berhasil ditambahkan ke keranjang!');
 // });
 
-
-
-
-
-
-
-
-
-
     //INI NIH ORDER
 Route::put('/order/{id}/status', [OrderController::class, 'updateStatus'])
     ->name('order.updateStatus');
