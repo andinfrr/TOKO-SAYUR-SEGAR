@@ -158,40 +158,6 @@
     </div>
 </div>
 
-{{-- ================= METODE PEMBAYARAN ================= --}}
-<div class="card mb-4">
-    <div class="card-header bg-success text-white">
-        Metode Pembayaran
-    </div>
-    <div class="card-body">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Metode Pembayaran</th>
-                    <th>Total Order</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($metodePembayaran as $m)
-                <tr>
-                    <td>
-                        @switch($m->metode_pembayaran)
-                            @case('COD') COD @break
-                            @case('TRANSFER_BRI') Transfer BRI @break
-                            @case('TRANSFER_BCA') Transfer BCA @break
-                            @case('TRANSFER_MANDIRI') Transfer Mandiri @break
-                            @case('E_WALLET') E-Wallet @break
-                            @default Lainnya
-                        @endswitch
-                    </td>
-                    <td>{{ $m->total_order }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-</div>
-
 {{-- ================= KELOLA PRODUK ================= --}}
 <div class="card mt-4">
     <div class="card-header bg-success text-white">

@@ -76,7 +76,7 @@ class OrderController extends Controller
         ]);
 
         // ===============================
-        // 2️⃣ SIMPAN DETAIL ORDER + KURANGI STOK
+        // 2️⃣ SIMPAN DETAIL ORDER 
         // ===============================
         foreach ($keranjang as $k) {
             DB::table('order_detail')->insert([

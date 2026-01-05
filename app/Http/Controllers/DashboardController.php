@@ -40,15 +40,6 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        // ================= METODE PEMBAYARAN =================
-        $metodePembayaran = DB::table('order')
-            ->select(
-                'metode_pembayaran',
-                DB::raw('COUNT(*) as total_order')
-            )
-            ->groupBy('metode_pembayaran')
-            ->get();
-
         // ================= DATA PRODUK (KELOLA PRODUK) =================
         $produk = DB::table('produk')->get();
 
@@ -58,7 +49,6 @@ class DashboardController extends Controller
             'totalPendapatan',
             'orderMasuk',
             'produkTerlaris',
-            'metodePembayaran',
             'produk'
         ));
     }
