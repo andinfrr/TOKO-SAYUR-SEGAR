@@ -48,6 +48,10 @@ Route::get('/keranjang', [KeranjangController::class, 'index']);
 // Route::get('/keranjang/tambah/{id_produk}', [KeranjangController::class, 'tambah']);
 Route::post('/keranjang/tambah', [KeranjangController::class, 'tambah']);
 
+// Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus']);
+
+
+Route::get('/keranjang/kurang/{id}', [KeranjangController::class, 'kurang']);
 Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus']);
 
 
@@ -97,8 +101,8 @@ Route::get('/penjual/logout', [PenjualAuthController::class, 'logout']);
 */
 
 
-Route::get('/keranjang/kurang/{id}', [KeranjangController::class, 'kurang']);
-Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus']);
+// Route::get('/keranjang/kurang/{id}', [KeranjangController::class, 'kurang']);
+// Route::get('/keranjang/hapus/{id}', [KeranjangController::class, 'hapus']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 

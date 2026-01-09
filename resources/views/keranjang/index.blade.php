@@ -25,8 +25,15 @@ $total += $subtotal;
     <td>{{ $k->jumlah }}</td>
     <td>Rp {{ number_format($subtotal) }}</td>
     <td>
-        <a href="/keranjang/hapus/{{ $k->id_keranjang_detail }}"
-           class="btn btn-danger btn-sm">
+        <!-- tombol kurang qty -->
+        <a href="/keranjang/kurang/{{ $k->id_keranjang_detail }}" 
+           class="btn btn-warning btn-sm">
+           -
+        </a>
+        <!-- tombol hapus -->
+        <a href="/keranjang/hapus/{{ $k->id_keranjang_detail }}" 
+           class="btn btn-danger btn-sm"
+           onclick="return confirm('Hapus produk ini?')">
            Hapus
         </a>
     </td>

@@ -61,7 +61,7 @@ public function tambah(Request $request)
 }
 
 
-    public function kurang($id)
+public function kurang($id)
     {
         $item = KeranjangDetail::findOrFail($id);
 
@@ -71,16 +71,15 @@ public function tambah(Request $request)
             $item->delete();
         }
 
-        return back();
+        return back()->with('success', 'Jumlah produk dikurangi');
     }
 
     public function hapus($id)
     {
-        $item = KeranjangDetail::findOrFail($id);
-        $item->delete();
-
-        return back();
+        KeranjangDetail::findOrFail($id)->delete();
+        return back()->with('success', 'Produk dihapus dari keranjang');
     }
+
 }
 
 
