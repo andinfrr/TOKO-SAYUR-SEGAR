@@ -27,7 +27,7 @@
 
     .navbar-brand {
         font-weight: 700;
-        color: #2f5d3a !important;
+        color: #cfe3b1 !important;
     }
 
     .nav-link {
@@ -124,42 +124,28 @@
          class="me-2">
         </a>
 
-        <!-- MENU TENGAH
-        <div class="collapse navbar-collapse">
-            <ul class="navbar-nav mx-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Beranda</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/produk">Produk</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Kategori</a>
-                </li>
-            </ul>
-        </div> -->
-
-        <!-- MENU KANAN -->
-        <div class="d-flex align-items-center gap-2">
-
-            @if(session()->has('penjual'))
-                <span class="fw-semibold text-success">Penjual</span>
-                <a href="/dashboard" class="btn btn-green btn-sm">Dashboard</a>
-                <a href="/penjual/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
-
-            @elseif(session()->has('customer'))
-                <span class="fw-semibold text-success">
+         @if(session()->has('customer'))
+                <span class="fw-semibold text-success text-white ms-2 halo-text ">
                     Halo, {{ session('customer')->nama }}
                 </span>
-                <a href="/keranjang" class="btn btn-green btn-sm">🛒 Keranjang</a>
-                <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
-
-            @else
-                <a href="/login" class="btn btn-green btn-sm">Login</a>
-            @endif
-
-        </div>
-
+        @endif
+    
+    <!-- MENU KANAN -->
+    <div class="d-flex align-items-center gap-2 ms-auto">
+    
+        @if(session()->has('penjual'))
+            <a href="/dashboard" class="btn btn-green btn-sm">Dashboard</a>
+            <a href="/penjual/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
+    
+        @elseif(session()->has('customer'))
+            <a href="/keranjang" class="btn btn-green btn-sm">🛒 Keranjang</a>
+            <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
+    
+        @else
+            <a href="/login" class="btn btn-green btn-sm">Login</a>
+        @endif
+    
+</div>
     </div>
 </nav>
 
