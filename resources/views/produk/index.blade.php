@@ -4,27 +4,37 @@
 <div class="row">
 
 {{-- MENU KATEGORI --}}
-    @isset($kategori)
-    <ul class="nav mb-3">
+@isset($kategori)
+<div class="kategori-wrapper mb-4">
+    <ul class="kategori-list">
+        <li>
+            <a href="/" 
+               class="kategori-item {{ request()->is('/') ? 'active' : '' }}">
+                Semua
+            </a>
+        </li>
+
         @foreach($kategori as $k)
-        <li class="nav-item">
-            <a class="nav-link text-dark"
-               href="/kategori/{{ $k->kategori }}">
-               {{ $k->kategori }}
+        <li>
+            <a href="/kategori/{{ $k->kategori }}"
+               class="kategori-item {{ request()->is('kategori/'.$k->kategori) ? 'active' : '' }}">
+                {{ $k->kategori }}
             </a>
         </li>
         @endforeach
     </ul>
-    @endisset
+</div>
+@endisset
+
 
 @foreach($produk as $p)
 <div class="col-md-3 mb-4 d-flex">
     {{-- CARD --}}
-    <div class="card h-100 w-100 shadow-sm">
+    <div class="card h-100 w-100 shadow-sm product-card">
 
         {{-- GAMBAR --}}
         <img src="{{ asset('storage/'.$p->foto) }}"
-        class="card-img-top" style="height:160px;object-fit:cover">
+        class="card-img-top" style="height:200px;object-fit:cover">
 
         {{-- ISI --}}
         <div class="card-body d-flex flex-column">

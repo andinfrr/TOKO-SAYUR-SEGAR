@@ -173,7 +173,7 @@
                     {{-- FOTO PRODUK --}}
                     <img src="{{ asset('storage/'.$p->foto) }}"
                          class="card-img-top"
-                         style="height:160px;object-fit:cover">
+                         style="height:200px;object-fit:cover">
 
                     {{-- INFO PRODUK --}}
                     <div class="card-body">

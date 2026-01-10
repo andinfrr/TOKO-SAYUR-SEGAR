@@ -13,7 +13,7 @@
 
         {{-- GAMBAR --}}
         <img src="{{ asset('storage/'.$p->foto) }}"
-             class="card-img-top product-img">
+             class="card-img-top product-img" style="height:200px;object-fit:cover">
 
         {{-- ISI --}}
         <div class="card-body d-flex flex-column">
