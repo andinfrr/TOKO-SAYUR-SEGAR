@@ -129,22 +129,22 @@
                     Halo, {{ session('customer')->nama }}
                 </span>
         @endif
-    
+
     <!-- MENU KANAN -->
     <div class="d-flex align-items-center gap-2 ms-auto">
-    
+
         @if(session()->has('penjual'))
             <a href="/dashboard" class="btn btn-green btn-sm">Dashboard</a>
             <a href="/penjual/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
-    
+
         @elseif(session()->has('customer'))
             <a href="/keranjang" class="btn btn-green btn-sm">🛒 Keranjang</a>
             <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
-    
+
         @else
             <a href="/login" class="btn btn-green btn-sm">Login</a>
         @endif
-    
+
 </div>
     </div>
 </nav>
