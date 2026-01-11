@@ -2,10 +2,9 @@
 
 @section('content')
 
-{{-- ================= STYLE DASHBOARD =================
-Semua CSS khusus buat dashboard penjual.
-Biar tampilannya cakep, rapi, dan konsisten warna hijau.
---}}
+ <!-- ================= STYLE DASHBOARD =================
+semua CSS buat dashboard penjual, biar tampilannya rapi, dan konsisten warna hijau. -->
+
 <style>
     /* ================= GLOBAL ================= */
     /* Styling judul */
@@ -15,14 +14,14 @@ Biar tampilannya cakep, rapi, dan konsisten warna hijau.
     }
 
     /* ================= CARD SUMMARY ================= */
-    /* Card total order & pendapatan */
+    /* card total order & pendapatan */
     .card.text-bg-success {
         background: linear-gradient(135deg, #4caf50, #6fa85f);
         border-radius: 18px;
         box-shadow: 0 10px 25px rgba(47,93,58,0.2);
     }
 
-    /* Card tambah produk */
+    /* card tambah produk */
     .card.border-success {
         border-radius: 18px;
         border: 2px dashed #6fa85f;
