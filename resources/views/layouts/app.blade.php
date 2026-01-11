@@ -137,12 +137,12 @@
 
             <!-- nampilin 2 menu ini -->
             <a href="/dashboard" class="btn btn-green btn-sm">Dashboard</a>
-            <a href="/penjual/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
+            <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
 
             <!-- jika cust -->
         @elseif(session()->has('customer'))
         <!-- nampilin 3  menu -->
-            <a href="/keranjang" class="btn btn-green btn-sm">🛒 Keranjang</a>
+            <a href="/keranjang" class="btn btn-green btn-sm">Keranjang</a>
             <a href="{{ route('riwayat.transaksi') }}" class="btn btn-green btn-sm">Riwayat Transaksi</a>
             <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
 
