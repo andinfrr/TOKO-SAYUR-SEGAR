@@ -249,7 +249,7 @@ List semua order yang masuk ke penjual -->
                             {{-- Tombol detail order --}}
                             <button type="button"
                                 class="btn btn-outline-success btn-sm mb-1 w-100"
-                                onclick="showDetail({{ $o->id_order }})">
+                                onclick="showDetail('{{ $o->id_order }}')">
                                 Detail
                             </button>
 
