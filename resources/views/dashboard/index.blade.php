@@ -1,6 +1,152 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    /* ================= GLOBAL ================= */
+h3 {
+    font-weight: 700;
+    color: #2f5d3a;
+}
+
+/* ================= CARD SUMMARY ================= */
+.card.text-bg-success {
+    background: linear-gradient(135deg, #4caf50, #6fa85f);
+    border-radius: 18px;
+    box-shadow: 0 10px 25px rgba(47,93,58,0.2);
+}
+
+.card.border-success {
+    border-radius: 18px;
+    border: 2px dashed #6fa85f;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card.border-success:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 22px rgba(0,0,0,.15);
+}
+
+/* ================= TABLE ORDER ================= */
+.table {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table thead th {
+    background: #f1f7e9;
+    color: #2f5d3a;
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background: #f8f9f4;
+}
+
+/* ================= STATUS BADGE ================= */
+.badge {
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: 500;
+}
+
+.bg-warning {
+    background-color: #ffb300 !important;
+}
+
+.bg-primary {
+    background-color: #42a5f5 !important;
+}
+
+.bg-success {
+    background-color: #4caf50 !important;
+}
+
+/* ================= BUTTON ================= */
+.btn-success {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    border-radius: 30px;
+}
+
+.btn-success:hover {
+    background-color: #43a047;
+    border-color: #43a047;
+}
+
+.btn-outline-success {
+    border-radius: 30px;
+    font-weight: 500;
+}
+
+.btn-outline-success:hover {
+    background: #4caf50;
+    color: #fff;
+}
+
+/* ================= MODAL ================= */
+.modal-content {
+    border-radius: 20px;
+}
+
+.modal-header {
+    background: #dfecc8;
+    color: #2f5d3a;
+    border-bottom: none;
+}
+
+/* ================= PRODUK CARD ================= */
+.card.h-100 {
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card.h-100:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 30px rgba(47,93,58,.18);
+}
+
+.card-img-top {
+    border-bottom: 1px solid #e6f1d9;
+}
+
+/* ================= LIST TERLARIS ================= */
+.list-group-item {
+    border-radius: 12px;
+    margin-bottom: 6px;
+    border: 1px solid #cfe7c5;
+    transition: background .2s;
+}
+
+.list-group-item:hover {
+    background: #f1f7e9;
+}
+
+/* ================= FORM ================= */
+.form-select,
+.form-control {
+    border-radius: 12px;
+    border: 1px solid #cfe7c5;
+}
+
+.form-select:focus,
+.form-control:focus {
+    border-color: #6fa85f;
+    box-shadow: 0 0 0 .2rem rgba(111,168,95,.25);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    h3 {
+        text-align: center;
+    }
+
+    .card.text-bg-success h2 {
+        font-size: 28px;
+    }
+}
+
+</style>
 <h3 class="mb-4 text-success">Dashboard Penjual</h3>
 
 {{-- ================= TOTAL ORDER | PENDAPATAN | TAMBAH PRODUK ================= --}}

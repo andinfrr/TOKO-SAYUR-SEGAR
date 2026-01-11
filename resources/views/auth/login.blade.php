@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
 
 @if(session('error'))
@@ -9,7 +8,7 @@
 @endif
 
 <div class="row justify-content-center mt-5">
-  <div class="col-md-5">
+  <div class="col-md-7 col-lg-6">
 
     <div class="card border-0 shadow-sm rounded-4 product-card">
 
