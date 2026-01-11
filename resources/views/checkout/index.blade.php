@@ -1,3 +1,8 @@
+<!-- Halaman checkout.
+Dipakai buat mengisi alamat pengiriman
+dan milih metode pembayaran sebelum pesanan diproses. -->
+
+
 @extends('layouts.app')
 
 @section('content')

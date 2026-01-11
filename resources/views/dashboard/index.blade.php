@@ -1,158 +1,172 @@
 @extends('layouts.app')
 
 @section('content')
+
+{{-- ================= STYLE DASHBOARD =================
+Semua CSS khusus buat dashboard penjual.
+Biar tampilannya cakep, rapi, dan konsisten warna hijau.
+--}}
 <style>
     /* ================= GLOBAL ================= */
-h3 {
-    font-weight: 700;
-    color: #2f5d3a;
-}
-
-/* ================= CARD SUMMARY ================= */
-.card.text-bg-success {
-    background: linear-gradient(135deg, #4caf50, #6fa85f);
-    border-radius: 18px;
-    box-shadow: 0 10px 25px rgba(47,93,58,0.2);
-}
-
-.card.border-success {
-    border-radius: 18px;
-    border: 2px dashed #6fa85f;
-    transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.card.border-success:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 22px rgba(0,0,0,.15);
-}
-
-/* ================= TABLE ORDER ================= */
-.table {
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.table thead th {
-    background: #f1f7e9;
-    color: #2f5d3a;
-    font-weight: 600;
-}
-
-.table tbody tr:hover {
-    background: #f8f9f4;
-}
-
-/* ================= STATUS BADGE ================= */
-.badge {
-    padding: 6px 12px;
-    border-radius: 12px;
-    font-weight: 500;
-}
-
-.bg-warning {
-    background-color: #ffb300 !important;
-}
-
-.bg-primary {
-    background-color: #42a5f5 !important;
-}
-
-.bg-success {
-    background-color: #4caf50 !important;
-}
-
-/* ================= BUTTON ================= */
-.btn-success {
-    background-color: #4caf50;
-    border-color: #4caf50;
-    border-radius: 30px;
-}
-
-.btn-success:hover {
-    background-color: #43a047;
-    border-color: #43a047;
-}
-
-.btn-outline-success {
-    border-radius: 30px;
-    font-weight: 500;
-}
-
-.btn-outline-success:hover {
-    background: #4caf50;
-    color: #fff;
-}
-
-/* ================= MODAL ================= */
-.modal-content {
-    border-radius: 20px;
-}
-
-.modal-header {
-    background: #dfecc8;
-    color: #2f5d3a;
-    border-bottom: none;
-}
-
-/* ================= PRODUK CARD ================= */
-.card.h-100 {
-    border-radius: 16px;
-    overflow: hidden;
-    transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.card.h-100:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 14px 30px rgba(47,93,58,.18);
-}
-
-.card-img-top {
-    border-bottom: 1px solid #e6f1d9;
-}
-
-/* ================= LIST TERLARIS ================= */
-.list-group-item {
-    border-radius: 12px;
-    margin-bottom: 6px;
-    border: 1px solid #cfe7c5;
-    transition: background .2s;
-}
-
-.list-group-item:hover {
-    background: #f1f7e9;
-}
-
-/* ================= FORM ================= */
-.form-select,
-.form-control {
-    border-radius: 12px;
-    border: 1px solid #cfe7c5;
-}
-
-.form-select:focus,
-.form-control:focus {
-    border-color: #6fa85f;
-    box-shadow: 0 0 0 .2rem rgba(111,168,95,.25);
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
+    /* Styling judul */
     h3 {
-        text-align: center;
+        font-weight: 700;
+        color: #2f5d3a;
     }
 
-    .card.text-bg-success h2 {
-        font-size: 28px;
+    /* ================= CARD SUMMARY ================= */
+    /* Card total order & pendapatan */
+    .card.text-bg-success {
+        background: linear-gradient(135deg, #4caf50, #6fa85f);
+        border-radius: 18px;
+        box-shadow: 0 10px 25px rgba(47,93,58,0.2);
     }
-}
 
+    /* Card tambah produk */
+    .card.border-success {
+        border-radius: 18px;
+        border: 2px dashed #6fa85f;
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card.border-success:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 22px rgba(0,0,0,.15);
+    }
+
+    /* ================= TABLE ORDER ================= */
+    /* Table order masuk */
+    .table {
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .table thead th {
+        background: #f1f7e9;
+        color: #2f5d3a;
+        font-weight: 600;
+    }
+
+    .table tbody tr:hover {
+        background: #f8f9f4;
+    }
+
+    /* ================= STATUS BADGE ================= */
+    /* Badge status order */
+    .badge {
+        padding: 6px 12px;
+        border-radius: 12px;
+        font-weight: 500;
+    }
+
+    .bg-warning {
+        background-color: #ffb300 !important;
+    }
+
+    .bg-primary {
+        background-color: #42a5f5 !important;
+    }
+
+    .bg-success {
+        background-color: #4caf50 !important;
+    }
+
+    /* ================= BUTTON ================= */
+    .btn-success {
+        background-color: #4caf50;
+        border-color: #4caf50;
+        border-radius: 30px;
+    }
+
+    .btn-success:hover {
+        background-color: #43a047;
+        border-color: #43a047;
+    }
+
+    .btn-outline-success {
+        border-radius: 30px;
+        font-weight: 500;
+    }
+
+    .btn-outline-success:hover {
+        background: #4caf50;
+        color: #fff;
+    }
+
+    /* ================= MODAL ================= */
+    /* Modal detail order */
+    .modal-content {
+        border-radius: 20px;
+    }
+
+    .modal-header {
+        background: #dfecc8;
+        color: #2f5d3a;
+        border-bottom: none;
+    }
+
+    /* ================= PRODUK CARD ================= */
+    /* Card produk di kelola produk */
+    .card.h-100 {
+        border-radius: 16px;
+        overflow: hidden;
+        transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .card.h-100:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 14px 30px rgba(47,93,58,.18);
+    }
+
+    .card-img-top {
+        border-bottom: 1px solid #e6f1d9;
+    }
+
+    /* ================= LIST TERLARIS ================= */
+    .list-group-item {
+        border-radius: 12px;
+        margin-bottom: 6px;
+        border: 1px solid #cfe7c5;
+        transition: background .2s;
+    }
+
+    .list-group-item:hover {
+        background: #f1f7e9;
+    }
+
+    /* ================= FORM ================= */
+    .form-select,
+    .form-control {
+        border-radius: 12px;
+        border: 1px solid #cfe7c5;
+    }
+
+    .form-select:focus,
+    .form-control:focus {
+        border-color: #6fa85f;
+        box-shadow: 0 0 0 .2rem rgba(111,168,95,.25);
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+        h3 {
+            text-align: center;
+        }
+
+        .card.text-bg-success h2 {
+            font-size: 28px;
+        }
+    }
 </style>
+
 <h3 class="mb-4 text-success">Dashboard Penjual</h3>
 
-{{-- ================= TOTAL ORDER | PENDAPATAN | TAMBAH PRODUK ================= --}}
+ <!-- ================= RINGKASAN DATA =================
+Total order, total pendapatan, dan tombol tambah produk -->
+
 <div class="row mb-4 align-items-stretch">
 
-    {{-- TOTAL ORDER --}}
+    <!-- total order -->
     <div class="col-md-4">
         <div class="card text-bg-success h-100">
             <div class="card-body">
@@ -162,7 +176,7 @@ h3 {
         </div>
     </div>
 
-    {{-- TOTAL PENDAPATAN --}}
+    <!-- total pendapatan -->
     <div class="col-md-4">
         <div class="card text-bg-success h-100">
             <div class="card-body">
@@ -172,7 +186,7 @@ h3 {
         </div>
     </div>
 
-    {{-- TAMBAH PRODUK --}}
+    {{-- TOMBOL TAMBAH PRODUK --}}
     <div class="col-md-4">
         <div class="card border-success h-100">
             <div class="card-body d-flex flex-column justify-content-center">
@@ -186,7 +200,9 @@ h3 {
 
 </div>
 
-{{-- ================= ORDERAN MASUK ================= --}}
+ <!-- ================= ORDERAN MASUK =================
+List semua order yang masuk ke penjual -->
+
 <div class="card mb-4">
     <div class="card-header bg-success text-white">
         Orderan Masuk
@@ -206,6 +222,7 @@ h3 {
             </thead>
 
             <tbody>
+                {{-- LOOP DATA ORDER --}}
                 @forelse ($orderMasuk as $o)
                 <tr>
                     <td>{{ $o->id_order }}</td>
@@ -213,6 +230,7 @@ h3 {
                     <td>{{ $o->nama_customer }}</td>
                     <td>Rp {{ number_format($o->total_harga, 0, ',', '.') }}</td>
 
+                    {{-- STATUS ORDER --}}
                     <td>
                         <span class="badge
                             @if($o->status_order == 'dikemas') bg-warning
@@ -223,22 +241,27 @@ h3 {
                         </span>
                     </td>
 
+                    {{-- AKSI --}}
                     <td>
                         <form action="{{ route('order.updateStatus', $o->id_order) }}" method="POST">
                             @csrf
                             @method('PUT')
 
-                    <button type="button" class="btn btn-outline-success btn-sm mb-1 w-100"onclick="showDetail({{ $o->id_order }})">
-                    Detail
-                </button>
+                            {{-- Tombol detail order --}}
+                            <button type="button"
+                                class="btn btn-outline-success btn-sm mb-1 w-100"
+                                onclick="showDetail({{ $o->id_order }})">
+                                Detail
+                            </button>
 
-
+                            {{-- Dropdown update status --}}
                             <select name="status_order" class="form-select form-select-sm mb-1">
                                 <option value="dikemas" {{ $o->status_order == 'dikemas' ? 'selected' : '' }}>Dikemas</option>
                                 <option value="dikirim" {{ $o->status_order == 'dikirim' ? 'selected' : '' }}>Dikirim</option>
                                 <option value="diterima" {{ $o->status_order == 'diterima' ? 'selected' : '' }}>Diterima</option>
                             </select>
 
+                            {{-- Tombol update status --}}
                             <button class="btn btn-success btn-sm w-100">
                                 Update
                             </button>
@@ -246,6 +269,7 @@ h3 {
                     </td>
                 </tr>
                 @empty
+                {{-- Kalo belum ada order --}}
                 <tr>
                     <td colspan="6" class="text-center text-muted">
                         Belum ada order masuk
@@ -257,7 +281,9 @@ h3 {
     </div>
 </div>
 
-<!-- MODAL DETAIL ORDER -->
+ <!-- ================= MODAL DETAIL ORDER =================
+Muncul pas tombol "Detail" ditekan -->
+
 <div class="modal fade" id="modalDetailOrder" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -285,9 +311,7 @@ h3 {
   </div>
 </div>
 
-
-
-{{-- ================= PRODUK TERLARIS ================= --}}
+<!-- ================= PRODUK TERLARIS ================= -->
 <div class="card mb-4">
     <div class="card-header bg-success text-white">
         Produk Terlaris
@@ -304,7 +328,7 @@ h3 {
     </div>
 </div>
 
-{{-- ================= KELOLA PRODUK ================= --}}
+ <!-- ================= KELOLA PRODUK =================  -->
 <div class="card mt-4">
     <div class="card-header bg-success text-white">
         Kelola Produk
@@ -334,7 +358,7 @@ h3 {
                         </small>
                     </div>
 
-                    {{-- TOMBOL EDIT --}}
+                    {{-- TOMBOL EDIT PRODUK --}}
                     <div class="card-footer bg-white border-0">
                         <a href="{{ url('/produk/'.$p->id_produk.'/edit') }}"
                            class="btn btn-success btn-sm w-100">
@@ -349,6 +373,10 @@ h3 {
     </div>
 </div>
 
+<!-- {{-- ================= SCRIPT DETAIL ORDER =================
+Ambil detail order pake fetch,
+terus tampilin ke modal
+--}} -->
 <script>
 function showDetail(id) {
     fetch(`/order/${id}/detail`)
@@ -381,6 +409,5 @@ function showDetail(id) {
         });
 }
 </script>
-
 
 @endsection

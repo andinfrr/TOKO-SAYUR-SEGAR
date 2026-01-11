@@ -1,19 +1,23 @@
+<!-- Halaman ini dipakai buat daftar akun customer.
+Isinya form registrasi biar user bisa bikin akun baru. -->
+
 @extends('layouts.app')
 
 @section('content')
 
+<!-- Pembungkus utama halaman register -->
 <div class="row justify-content-center mt-5">
   <div class="col-md-8 col-lg-7">
 
     <div class="card border-0 shadow-sm register-card">
 
-      {{-- HEADER --}}
+      <!-- Bagian header halaman register -->
       <div class="card-header register-header">
         <h4>Register Customer</h4>
         <small>Gabung & belanja sayur segar</small>
       </div>
 
-      {{-- BODY --}}
+       <!-- Bagian tengah yg isinya form pendaftaran -->
       <div class="card-body p-4">
         <form method="POST" action="/register">
           @csrf
@@ -47,13 +51,14 @@
                       required></textarea>
           </div>
 
+          <!-- Tombol buat daftar akun -->
           <button class="btn btn-success w-100 py-2 fw-bold">
             Daftar
           </button>
         </form>
       </div>
 
-      {{-- FOOTER --}}
+      <!-- Bagian bawah halaman register -->
       <div class="card-footer register-footer">
         <small style="color:#2f5d3a">
           Sudah punya akun?
@@ -72,7 +77,7 @@
 
 @endsection
 
-
+<!-- CSS buat tampilan halaman register -->
 <style>
     /* ===== REGISTER CUSTOMER ===== */
 
