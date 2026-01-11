@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // MENAMPILKAN HALAMAN LOGIN
     public function loginForm()
     {
         return view('auth.login');
@@ -16,9 +17,7 @@ class AuthController extends Controller
 
    public function login(Request $request)
 {
-    // ===============================
-    // 1️⃣ LOGIN PENJUAL (nama_penjual + password plain)
-    // ===============================
+    // LOGIN PENJUAL (nama_penjual + password plain)
     $penjual = DB::table('penjual')
         ->where('nama_penjual', $request->username)
         ->first();
@@ -28,47 +27,29 @@ class AuthController extends Controller
         return redirect('/dashboard');
     }
 
-    // ===============================
-    // 2️⃣ LOGIN CUSTOMER (email + bcrypt)
-    // ===============================
+    // LOGIN CUSTOMER (email + bcrypt)
     $customer = DB::table('customer')
         ->where('email', $request->username)
         ->first();
 
-if ($customer && $request->password === $customer->password) {
-    Session::put('customer', $customer);
-    return redirect('/');
-}
+    if ($customer && $request->password === $customer->password) {
+        Session::put('customer', $customer);
+        return redirect('/');
+    }
+        // Gagal semua Kembali ke halaman login + pesan error
+        return back()->with('error', 'Username atau password salah');
+    }
 
-
-    // ===============================
-    // 3️⃣ GAGAL SEMUA
-    // ===============================
-    return back()->with('error', 'Username atau password salah');
-}
-
-
-    // public function login(Request $request)
-    // {
-    //     $customer = DB::table('customer')
-    //         ->where('email', $request->email)
-    //         ->first();
-
-    //     if (!$customer || !Hash::check($request->password, $customer->password)) {
-    //         return back()->with('error', 'Email atau password salah');
-    //     }
-
-    //     Session::put('customer', $customer);
-    //     return redirect('/');
-    // }
-
+    // FORM REGISTER
     public function registerForm()
     {
         return view('auth.register');
     }
 
+    // PROSES REGISTER CUSTOMER
     public function register(Request $request)
     {
+        // Menyimpan data customer baru ke database
         DB::table('customer')->insert([
             'nama' => $request->nama,
             'email' => $request->email,
@@ -80,11 +61,12 @@ if ($customer && $request->password === $customer->password) {
         return redirect('/login');
     }
 
-public function logout()
-{
-    Session::forget('penjual');
-    Session::forget('customer');
-    return redirect('/');
-}
+    // LOGOUT
+    public function logout()
+    {
+        Session::forget('penjual');
+        Session::forget('customer');
+        return redirect('/');
+    }
 
-}
+    }

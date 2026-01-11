@@ -13,26 +13,27 @@ class DashboardController extends Controller
             return redirect('/penjual/login');
         }
 
-        // ================= TOTAL ORDER =================
+        // TOTAL ORDER 
+        // Menghitung seluruh data order yang ada di tabel order
         $totalOrder = DB::table('order')->count();
 
-        // ================= TOTAL PENDAPATAN =================
+        // TOTAL PENDAPATAN 
         $totalPendapatan = DB::table('order_detail')
             ->select(DB::raw('SUM(jumlah * harga_satuan) as total'))
             ->value('total');
 
-
-         // ================= ORDERAN MASUK (PAKE VIEW) =================
+         // ORDERAN MASUK 
         $orderMasuk = DB::table('v_laporan_order')
             ->orderByDesc('tanggal_order')
             ->get();
 
 
-        // ================= PRODUK TERLARIS =================
+        // PRODUK TERLARIS
         $produkTerlaris = DB::table('order_detail')
             ->join('produk', 'produk.id_produk', '=', 'order_detail.id_produk')
             ->select(
                 'produk.nama_produk',
+                // Menjumlahkan total produk yang terjual
                 DB::raw('SUM(order_detail.jumlah) as total_jual')
             )
             ->groupBy('produk.nama_produk')
@@ -40,10 +41,10 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        // ================= DATA PRODUK (KELOLA PRODUK) =================
+        // DATA PRODUK (KELOLA PRODUK)
         $produk = DB::table('produk')->get();
 
-        // ================= KIRIM KE VIEW =================
+        // KIRIM KE VIEW 
         return view('dashboard.index', compact(
             'totalOrder',
             'totalPendapatan',

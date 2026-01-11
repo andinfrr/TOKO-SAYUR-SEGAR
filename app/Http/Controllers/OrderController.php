@@ -9,9 +9,7 @@ use App\Models\Produk;
 
 class OrderController extends Controller
 {
-    /* ===============================
-       FORM CHECKOUT
-    =============================== */
+    //FORM CHECKOUT
     public function form()
     {
         $keranjang = KeranjangDetail::join('produk', 'produk.id_produk', '=', 'keranjang_detail.id_produk')
@@ -26,9 +24,7 @@ class OrderController extends Controller
         return view('checkout.index', compact('keranjang'));
     }
 
-    /* ===============================
-       PROSES CHECKOUT
-    =============================== */
+    //PROSES CHECKOUT
     public function proses(Request $request)
     {
         // cek login customer
@@ -57,9 +53,7 @@ class OrderController extends Controller
             return redirect('/keranjang')->with('error', 'Keranjang kosong');
         }
 
-        // ===============================
-        // 1️⃣ SIMPAN ORDER
-        // ===============================
+        // SIMPAN ORDER
         $kodeTransaksi = 'TRX-' . now()->format('YmdHis') . '-' . rand(100, 999);
 
         $idOrder = DB::table('order')->insertGetId([
@@ -75,9 +69,7 @@ class OrderController extends Controller
             'tgl_bayar'          => null
         ]);
 
-        // ===============================
-        // 2️⃣ SIMPAN DETAIL ORDER 
-        // ===============================
+        // SIMPAN DETAIL ORDER 
         foreach ($keranjang as $k) {
             DB::table('order_detail')->insert([
                 'id_order'      => $idOrder,
@@ -87,9 +79,7 @@ class OrderController extends Controller
             ]);
         }
 
-        // ===============================
-        // 3️⃣ SIMPAN SESSION INVOICE
-        // ===============================
+        // SIMPAN SESSION INVOICE
         session([
             'invoice' => [
                 'customer' => $customer,
@@ -101,20 +91,14 @@ class OrderController extends Controller
             ]
         ]);
 
-        // ===============================
-        // 4️⃣ KOSONGKAN KERANJANG
-        // ===============================
+        // KOSONGKAN KERANJANG
         KeranjangDetail::truncate();
 
-        // ===============================
-        // 5️⃣ REDIRECT KE INVOICE
-        // ===============================
+        // REDIRECT KE INVOICE
         return redirect('/invoice')->with('success', 'Checkout berhasil');
     }
 
-    /* ===============================
-       UPDATE STATUS ORDER (PENJUAL)
-    =============================== */
+    // UPDATE STATUS ORDER (PENJUAL)
     public function updateStatus(Request $request, $id)
     {
         DB::table('order')
@@ -126,9 +110,7 @@ class OrderController extends Controller
         return back()->with('success', 'Status order berhasil diupdate');
     }
 
-    /* ===============================
-       DETAIL ORDER (AJAX)
-    =============================== */
+    // DETAIL ORDER (AJAX)
     public function detail($id)
     {
         $detail = DB::table('v_detail_order')

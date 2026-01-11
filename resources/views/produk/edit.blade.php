@@ -23,7 +23,7 @@
     >
         @csrf
 
-        {{-- NAMA PRODUK --}}
+<!-- nama produk  -->
         <div class="mb-3">
             <label class="form-label">Nama Produk</label>
             <input 
@@ -35,7 +35,7 @@
             >
         </div>
 
-        {{-- HARGA --}}
+<!-- nampilin harga -->
         <div class="mb-3">
             <label class="form-label">Harga</label>
             <input 
@@ -47,7 +47,7 @@
             >
         </div>
 
-        {{-- STOK --}}
+<!-- nampilin stok -->
         <div class="mb-3">
             <label class="form-label">Stok</label>
             <input 
@@ -59,7 +59,7 @@
             >
         </div>
 
-        {{-- KATEGORI --}}
+<!-- nampilin kategori -->
         <div class="mb-3">
             <label class="form-label">Kategori</label>
             <input 
@@ -71,7 +71,7 @@
             >
         </div>
 
-        {{-- FOTO LAMA --}}
+<!-- update foto, foto saat ini -->
         @if ($produk->foto)
         <div class="mb-3">
             <label class="form-label">Foto Saat Ini</label><br>
@@ -82,8 +82,7 @@
             >
         </div>
         @endif
-
-        {{-- FOTO BARU --}}
+<!-- foto baru -->
         <div class="mb-4">
             <label class="form-label">Ganti Foto (Opsional)</label>
             <input 
@@ -93,16 +92,14 @@
             >
         </div>
 
-        {{-- BUTTON --}}
+<!-- tombol updet -->
         <button type="submit" class="btn btn-warning">
-            💾 Update Produk
+            Update Produk
         </button>
-
+<!-- tombol batal updet -->
         <a href="/dashboard" class="btn btn-secondary">
-            ❌ Batal
+            Batal
         </a>
-
     </form>
-
 </div>
 @endsection
