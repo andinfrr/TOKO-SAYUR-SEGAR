@@ -75,11 +75,11 @@ Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
     ->name('produk.kategori');
 
 
-//INI NIH ORDER
+//INI NIH  DAFTAR ORDER MASUK
     Route::put('/order/{id}/status', [OrderController::class, 'updateStatus'])
         ->name('order.updateStatus');
 
-//INI DETAIL ORDER
+//INI DETAIL ORDER YG MASUK
     Route::get('/order/{id}/detail', [OrderController::class, 'detail'])
         ->name('order.detail');
 
