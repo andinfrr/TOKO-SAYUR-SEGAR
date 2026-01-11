@@ -1,6 +1,75 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  /* ===== LOGIN PAGE ===== */
+
+.login-wrapper {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+/* CARD */
+.login-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+/* HEADER */
+.login-header {
+    background: linear-gradient(135deg, #4caf50, #6fa85f);
+    color: #fff;
+    padding: 18px;
+    text-align: center;
+}
+
+.login-header h4 {
+    margin: 0;
+    font-weight: 700;
+}
+
+/* BODY */
+.login-card .card-body {
+    background: #f8f9f4;
+}
+
+/* INPUT */
+.login-card .form-control {
+    border-radius: 12px;
+    padding: 10px 14px;
+    border: 1px solid #cfe3b1;
+}
+
+.login-card .form-control:focus {
+    border-color: #4caf50;
+    box-shadow: 0 0 0 0.15rem rgba(76, 175, 80, 0.25);
+}
+
+/* BUTTON */
+.login-card .btn-success {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    border-radius: 30px;
+}
+
+.login-card .btn-success:hover {
+    background-color: #43a047;
+    border-color: #43a047;
+}
+
+/* FOOTER */
+.login-card .card-footer {
+    background: #eef5e6;
+    border-top: none;
+}
+
+.login-card a {
+    text-decoration: none;
+}
+
+</style>
 
 @if(session('error'))
 <div class="alert alert-danger">
@@ -8,14 +77,14 @@
 </div>
 @endif
 
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center mt-5 login-wrapper">
   <div class="col-md-5">
-    <div class="card shadow-lg border-0">
+    <div class="card shadow-lg border-0 login-card">
       
-      <div class="card-header text-center text-white"
-           style="background:#2e7d32">
-        <h4 class="mb-0 fw-bold">Login</h4>
-      </div>
+<div class="card-header login-header">
+    <h4>Login</h4>
+</div>
+
 
       <div class="card-body p-4">
         <form method="POST" action="/login">

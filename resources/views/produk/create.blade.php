@@ -1,17 +1,91 @@
 @extends('layouts.app')
 
 @section('content')
-<h3 class="text-success mb-3">Tambah Produk Sayur</h3>
+<style>
+  /* ================= JUDUL ================= */
+h3 {
+    font-weight: 700;
+    color: #2f5d3a;
+}
 
+/* ================= CARD FORM ================= */
+/* HEADER FORM */
+.form-header {
+    background: linear-gradient(135deg, #4caf50, #6fa85f);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+.form-header h5 {
+    margin: 0;
+    font-weight: 700;
+}
+
+.form-card {
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* ================= FORM ================= */
+.form-label {
+    color: #2f5d3a;
+}
+
+.form-control {
+    border-radius: 14px;
+    border: 1px solid #cfe7c5;
+    padding: 10px 14px;
+}
+
+.form-control:focus {
+    border-color: #6fa85f;
+    box-shadow: 0 0 0 .2rem rgba(111,168,95,.25);
+}
+
+/* SELECT */
+select.form-control {
+    cursor: pointer;
+}
+
+/* ================= BUTTON ================= */
+.btn-success {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    border-radius: 30px;
+}
+
+.btn-success:hover {
+    background-color: #43a047;
+    border-color: #43a047;
+}
+
+/* ================= FILE INPUT ================= */
+input[type="file"] {
+    padding: 8px;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+    h3 {
+        text-align: center;
+    }
+}
+
+</style>
 
 <div class="row justify-content-center mt-4">
   <div class="col-md-6">
 
     <div class="card shadow border-0">
-      <div class="card-header text-white fw-bold"
-           style="background:#2e7d32">
-        🥬 Tambah Produk Sayur
-      </div>
+    <div class="form-header">
+        <span style="font-size:22px"></span>
+        <h5>Tambah Produk Sayur</h5>
+    </div>
 
       <div class="card-body p-4">
         <form method="POST" action="/produk" enctype="multipart/form-data">
