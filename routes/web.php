@@ -8,6 +8,8 @@ use App\Http\Controllers\KeranjangController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualAuthController;
+use App\Http\Controllers\RiwayatTransaksiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -164,3 +166,6 @@ Route::put('/order/{id}/status', [OrderController::class, 'updateStatus'])
 Route::get('/order/{id}/detail', [OrderController::class, 'detail'])
     ->name('order.detail');
 
+    //RIWAYAT TRANSAKSI
+    Route::get('/riwayat-transaksi', [RiwayatTransaksiController::class, 'index'])
+    ->name('riwayat.transaksi');

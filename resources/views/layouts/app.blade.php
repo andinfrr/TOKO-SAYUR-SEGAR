@@ -139,6 +139,7 @@
 
         @elseif(session()->has('customer'))
             <a href="/keranjang" class="btn btn-green btn-sm">🛒 Keranjang</a>
+            <a href="{{ route('riwayat.transaksi') }}" class="btn btn-green btn-sm">Riwayat Transaksi</a>
             <a href="/logout" class="btn btn-outline-danger btn-sm rounded-pill">Logout</a>
 
         @else
