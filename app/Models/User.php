@@ -33,4 +33,10 @@ class User extends Authenticatable
             'password' => 'hashed', // password otomatis di-hash
         ];
     }
+
+    public function alamat()
+{
+    return $this->hasMany(AlamatCustomer::class, 'id_customer', 'id_customer');
+}
+
 }

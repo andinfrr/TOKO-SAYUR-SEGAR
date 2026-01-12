@@ -42,14 +42,34 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
             <input name="no_hp" class="form-control" placeholder="08xxxxxxxxxx" required>
           </div>
 
-          <div class="mb-4">
-            <label class="form-label">Alamat</label>
-            <textarea name="alamat"
-                      rows="3"
-                      class="form-control"
-                      placeholder="Alamat lengkap"
-                      required></textarea>
-          </div>
+          <div class="mb-3">
+    <label>Provinsi</label>
+    <select id="provinsi" name="provinsi" class="form-control" required>
+        <option value="">-- Pilih Provinsi --</option>
+    </select>
+</div>
+<div class="mb-3">
+    <label>Kota / Kabupaten</label>
+    <select id="kota" name="kota" class="form-control" required>
+        <option value="">-- Pilih Kota --</option>
+    </select>
+</div>
+<div class="mb-3">
+    <label>Kecamatan</label>
+    <select id="kecamatan" name="kecamatan" class="form-control" required>
+        <option value="">-- Pilih Kecamatan --</option>
+    </select>
+</div>
+<div class="mb-3">
+    <label>Kode Pos</label>
+    <input type="text" name="kode_pos" class="form-control" required>
+</div>
+
+<div class="mb-3">
+    <label>Detail Alamat</label>
+    <textarea name="detail_alamat" class="form-control" rows="3" required></textarea>
+</div>
+
 
           <!-- Tombol buat daftar akun -->
           <button class="btn btn-success w-100 py-2 fw-bold">
@@ -144,3 +164,67 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
 }
 
 </style>
+
+@push('scripts')
+<script>
+const provinsiSelect = document.getElementById('provinsi');
+const kotaSelect = document.getElementById('kota');
+const kecamatanSelect = document.getElementById('kecamatan');
+
+// ===== LOAD PROVINSI =====
+fetch('https://www.emsifa.com/api-wilayah-indonesia/api/provinces.json')
+    .then(res => res.json())
+    .then(data => {
+        data.forEach(prov => {
+            const option = document.createElement('option');
+            option.value = prov.name;
+            option.dataset.id = prov.id;
+            option.textContent = prov.name;
+            provinsiSelect.appendChild(option);
+        });
+    });
+
+// ===== SAAT PROVINSI DIPILIH =====
+provinsiSelect.addEventListener('change', function () {
+    const provId = this.selectedOptions[0]?.dataset.id;
+
+    kotaSelect.innerHTML = '<option value="">-- Pilih Kota --</option>';
+    kecamatanSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+
+    if (!provId) return;
+
+    fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/regencies/${provId}.json`)
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(kota => {
+                const option = document.createElement('option');
+                option.value = kota.name;
+                option.dataset.id = kota.id;
+                option.textContent = kota.name;
+                kotaSelect.appendChild(option);
+            });
+        });
+});
+
+// ===== SAAT KOTA DIPILIH =====
+kotaSelect.addEventListener('change', function () {
+    const kotaId = this.selectedOptions[0]?.dataset.id;
+
+    kecamatanSelect.innerHTML = '<option value="">-- Pilih Kecamatan --</option>';
+
+    if (!kotaId) return;
+
+    fetch(`https://www.emsifa.com/api-wilayah-indonesia/api/districts/${kotaId}.json`)
+        .then(res => res.json())
+        .then(data => {
+            data.forEach(kec => {
+                const option = document.createElement('option');
+                option.value = kec.name;
+                option.textContent = kec.name;
+                kecamatanSelect.appendChild(option);
+            });
+        });
+});
+</script>
+@endpush
+

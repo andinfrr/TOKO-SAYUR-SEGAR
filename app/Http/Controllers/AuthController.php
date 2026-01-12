@@ -47,19 +47,34 @@ class AuthController extends Controller
     }
 
     // PROSES REGISTER CUSTOMER
-    public function register(Request $request)
-    {
-        // Menyimpan data customer baru ke database
-        DB::table('customer')->insert([
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'password' => $request->password, 
-            'no_hp' => $request->no_hp,
-            'alamat' => $request->alamat
-        ]);
+   public function register(Request $request)
+{
+    // 1️⃣ simpan customer
+    $idCustomer = DB::table('customer')->insertGetId([
+        'nama'       => $request->nama,
+        'email'      => $request->email,
+        'password' => $request->password,
+        'no_hp'      => $request->no_hp,
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
 
-        return redirect('/login');
-    }
+    // 2️⃣ simpan alamat utama
+    DB::table('alamat_customer')->insert([
+        'id_customer'   => $idCustomer,
+        'provinsi'      => $request->provinsi,
+        'kota'          => $request->kota,
+        'kecamatan'     => $request->kecamatan,
+        'kode_pos'      => $request->kode_pos,
+        'detail_alamat' => $request->detail_alamat,
+        'is_utama'      => 1,
+        'created_at'    => now(),
+        'updated_at'    => now(),
+    ]);
+
+    return redirect('/login')->with('success', 'Register berhasil');
+}
+
 
     // LOGOUT
     public function logout()

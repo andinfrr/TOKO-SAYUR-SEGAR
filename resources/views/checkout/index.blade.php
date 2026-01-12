@@ -13,8 +13,29 @@ dan milih metode pembayaran sebelum pesanan diproses. -->
 
 <div class="mb-3">
     <label>Alamat Kirim</label>
-    <textarea name="alamat" class="form-control" required></textarea>
+
+    <select name="id_alamat" class="form-control" required>
+        <option value="">-- Pilih Alamat --</option>
+
+        @foreach ($alamatCustomer as $alamat)
+            <option value="{{ $alamat->id_alamat }}">
+                {{ $alamat->provinsi }},
+                {{ $alamat->kota }},
+                {{ $alamat->kecamatan }} -
+                {{ $alamat->detail_alamat }}
+                @if($alamat->is_utama)
+                    (Utama)
+                @endif
+            </option>
+        @endforeach
+    </select>
+
+    <a href="{{ url('/alamat/tambah') }}" class="btn btn-sm btn-outline-success mt-2">
+        + Tambah Alamat Baru
+    </a>
 </div>
+
+
 
 <div class="mb-3">
     <label class="form-label">Metode Pembayaran</label>

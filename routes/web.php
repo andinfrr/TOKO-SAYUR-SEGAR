@@ -9,6 +9,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualAuthController;
 use App\Http\Controllers\RiwayatTransaksiController;
+use App\Http\Controllers\AlamatCustomerController;
+use Illuminate\Support\Facades\Http;
 
 // Home & list produk
 Route::get('/', [ProdukController::class, 'index']);
@@ -86,3 +88,28 @@ Route::get('/kategori/{kategori}', [ProdukController::class, 'kategori'])
 //RIWAYAT TRANSAKSI
         Route::get('/riwayat-transaksi', [RiwayatTransaksiController::class, 'index'])
         ->name('riwayat.transaksi');
+
+
+//ALAMATTTT
+        Route::get('/alamat/tambah', [AlamatCustomerController::class, 'create']);
+Route::post('/alamat/simpan', [AlamatCustomerController::class, 'store']);
+
+
+
+Route::get('/api/provinces', function () {
+    return Http::get(
+        'https://emsifa.github.io/api-wilayah-indonesia/api/provinces.json'
+    )->json();
+});
+
+Route::get('/api/regencies/{id}', function ($id) {
+    return Http::get(
+        "https://emsifa.github.io/api-wilayah-indonesia/api/regencies/{$id}.json"
+    )->json();
+});
+
+Route::get('/api/districts/{id}', function ($id) {
+    return Http::get(
+        "https://emsifa.github.io/api-wilayah-indonesia/api/districts/{$id}.json"
+    )->json();
+});

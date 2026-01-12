@@ -6,23 +6,25 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\KeranjangDetail;
 use App\Models\Produk;
+use App\Models\AlamatCustomer;
+
 
 class OrderController extends Controller
 {
     //FORM CHECKOUT
-    public function form()
-    {
-        $keranjang = KeranjangDetail::join('produk', 'produk.id_produk', '=', 'keranjang_detail.id_produk')
-            ->select(
-                'keranjang_detail.*',
-                'produk.nama_produk',
-                'produk.harga',
-                'produk.stok'
-            )
-            ->get();
+   public function form()
+{
+    // ambil customer dari session
+    $customer = session('customer');
 
-        return view('checkout.index', compact('keranjang'));
-    }
+    // ambil alamat customer
+    $alamatCustomer = AlamatCustomer::where('id_customer', $customer->id_customer)
+                        ->orderBy('is_utama', 'desc')
+                        ->get();
+
+    return view('checkout.index', compact('alamatCustomer'));
+}
+
 
     //PROSES CHECKOUT
     public function proses(Request $request)
