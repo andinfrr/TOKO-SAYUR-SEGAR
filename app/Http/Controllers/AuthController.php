@@ -36,30 +36,41 @@ class AuthController extends Controller
         Session::put('customer', $customer);
         return redirect('/');
     }
-        // Gagal semua Kembali ke halaman login + pesan error
         return back()->with('error', 'Username atau password salah');
     }
 
     // FORM REGISTER
-    public function registerForm()
-    {
-        return view('auth.register');
-    }
+public function registerForm()
+{
+    return view('auth.register');
+}
 
-    // PROSES REGISTER CUSTOMER
-    public function register(Request $request)
-    {
-        // Menyimpan data customer baru ke database
-        DB::table('customer')->insert([
-            'nama' => $request->nama,
-            'email' => $request->email,
-            'password' => $request->password, 
-            'no_hp' => $request->no_hp,
-            'alamat' => $request->alamat
-        ]);
+   // PROSES REGISTER CUSTOMER
+public function register(Request $request)
+{
+    // VALIDASI INPUT
+    $request->validate([
+        'nama' => 'required|string|max:100',
+        'email' => 'required|email|unique:customer,email',
+        'password' => 'required|min:6|confirmed',
+        'no_hp' => 'required',
+        'alamat' => 'required',
+    ], [
+        'password.confirmed' => 'Password dan konfirmasi password tidak sama.',
+    ]);
 
-        return redirect('/login');
-    }
+    // SIMPAN KE DATABASE
+    DB::table('customer')->insert([
+        'nama' => $request->nama,
+        'email' => $request->email,
+        'password' => Hash::make($request->password), // 🔐 HASH
+        'no_hp' => $request->no_hp,
+        'alamat' => $request->alamat
+    ]);
+
+    return redirect('/login')->with('success', 'Registrasi berhasil, silakan login');
+}
+
 
     // LOGOUT
     public function logout()

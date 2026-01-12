@@ -24,22 +24,68 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
 
           <div class="mb-3">
             <label class="form-label">Nama Lengkap</label>
-            <input name="nama" class="form-control" placeholder="Nama lengkap" required>
+            <input name="nama" class="form-control" value="{{ old('nama') }}" placeholder="Nama lengkap" required>
           </div>
 
           <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" placeholder="Email aktif" required>
+            <input type="email" name="email" class="form-control" value="{{ old('nama') }}" placeholder="Email aktif" required>
           </div>
 
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" name="password" class="form-control" placeholder="Password" required>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+        
+          <div class="position-relative">
+            <input type="password"
+                   name="password"
+                   id="password"
+                   class="form-control"
+                   placeholder="Password"
+                   required>
+        
+            <i class="fa-solid fa-eye"
+               onclick="togglePassword('password', this)"
+               style="
+                 position: absolute;
+                 top: 50%;
+                 right: 15px;
+                 transform: translateY(-50%);
+                 cursor: pointer;
+                 color: #6c757d;
+               ">
+            </i>
           </div>
+        </div>
+        
+        <div class="mb-3">
+          <label class="form-label">Konfirmasi Password</label>
+        
+          <div class="position-relative">
+            <input type="password"
+                   name="password_confirmation"
+                   id="password_confirmation"
+                   class="form-control"
+                   placeholder="Ulangi password"
+                   required>
+        
+            <i class="fa-solid fa-eye"
+               onclick="togglePassword('password_confirmation', this)"
+               style="
+                 position: absolute;
+                 top: 50%;
+                 right: 15px;
+                 transform: translateY(-50%);
+                 cursor: pointer;
+                 color: #6c757d;
+               ">
+            </i>
+          </div>
+        </div>
+
 
           <div class="mb-3">
             <label class="form-label">No HP</label>
-            <input name="no_hp" class="form-control" placeholder="08xxxxxxxxxx" required>
+            <input name="no_hp" class="form-control" value="{{ old('nama') }}" placeholder="08xxxxxxxxxx" required>
           </div>
 
           <div class="mb-4">
@@ -47,6 +93,7 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
             <textarea name="alamat"
                       rows="3"
                       class="form-control"
+                      value="{{ old('nama') }}"
                       placeholder="Alamat lengkap"
                       required></textarea>
           </div>
@@ -74,6 +121,22 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
 
   </div>
 </div>
+<!-- Script show/hide password -->
+<script>
+function togglePassword(fieldId, icon) {
+    const input = document.getElementById(fieldId);
+
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+</script>
 
 @endsection
 
