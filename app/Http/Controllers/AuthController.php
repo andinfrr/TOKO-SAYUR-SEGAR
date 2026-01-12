@@ -52,7 +52,7 @@ public function register(Request $request)
     $request->validate([
         'nama' => 'required|string|max:100',
         'email' => 'required|email|unique:customer,email',
-        'password' => 'required|min:6|confirmed',
+        'password' => 'required|confirmed',
         'no_hp' => 'required',
         'alamat' => 'required',
     ], [
@@ -63,7 +63,7 @@ public function register(Request $request)
     DB::table('customer')->insert([
         'nama' => $request->nama,
         'email' => $request->email,
-        'password' => Hash::make($request->password), // 🔐 HASH
+        'password' => Hash::make($request->password),
         'no_hp' => $request->no_hp,
         'alamat' => $request->alamat
     ]);

@@ -29,20 +29,21 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
 
           <div class="mb-3">
             <label class="form-label">Email</label>
-            <input type="email" name="email" class="form-control" value="{{ old('nama') }}" placeholder="Email aktif" required>
+            <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email aktif" required>
           </div>
 
         <div class="mb-3">
           <label class="form-label">Password</label>
-        
+
           <div class="position-relative">
             <input type="password"
                    name="password"
                    id="password"
                    class="form-control"
+                   value="{{ old('password') }}"
                    placeholder="Password"
                    required>
-        
+
             <i class="fa-solid fa-eye"
                onclick="togglePassword('password', this)"
                style="
@@ -56,10 +57,10 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
             </i>
           </div>
         </div>
-        
+
         <div class="mb-3">
           <label class="form-label">Konfirmasi Password</label>
-        
+
           <div class="position-relative">
             <input type="password"
                    name="password_confirmation"
@@ -67,7 +68,7 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
                    class="form-control"
                    placeholder="Ulangi password"
                    required>
-        
+
             <i class="fa-solid fa-eye"
                onclick="togglePassword('password_confirmation', this)"
                style="
@@ -80,12 +81,19 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
                ">
             </i>
           </div>
+ @error('password') 
+ <small class="text-danger">{{ $message }}</small> 
+ @enderror 
+ 
+ @error('password_confirmation') 
+ <small class="text-danger">{{ $message }}</small> 
+ @enderror
         </div>
 
 
           <div class="mb-3">
             <label class="form-label">No HP</label>
-            <input name="no_hp" class="form-control" value="{{ old('nama') }}" placeholder="08xxxxxxxxxx" required>
+            <input name="no_hp" class="form-control" value="{{ old('no_hp') }}" placeholder="08xxxxxxxxxx" required>
           </div>
 
           <div class="mb-4">
@@ -93,7 +101,7 @@ Isinya form registrasi biar user bisa bikin akun baru. -->
             <textarea name="alamat"
                       rows="3"
                       class="form-control"
-                      value="{{ old('nama') }}"
+                      value="{{ old('alamat') }}"
                       placeholder="Alamat lengkap"
                       required></textarea>
           </div>
