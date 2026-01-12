@@ -24,9 +24,12 @@ class DashboardController extends Controller
 
          // ORDERAN MASUK 
         $orderMasuk = DB::table('v_laporan_order')
-            ->orderByDesc('tanggal_order')
-            ->get();
-
+        ->orderByDesc('tanggal_order')
+        ->get()
+        ->groupBy('id_order')
+        ->map(function ($group) {
+            return $group->first();
+        });
 
         // PRODUK TERLARIS
         $produkTerlaris = DB::table('order_detail')

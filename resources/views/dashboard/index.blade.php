@@ -221,6 +221,9 @@ List semua order yang masuk ke penjual -->
             </thead>
 
             <tbody>
+
+
+            
                 {{-- LOOP DATA ORDER --}}
                 @forelse ($orderMasuk as $o)
                 <tr>
@@ -228,6 +231,7 @@ List semua order yang masuk ke penjual -->
                     <td>{{ $o->tanggal_order }}</td>
                     <td>{{ $o->nama_customer }}</td>
                     <td>Rp {{ number_format($o->total_harga, 0, ',', '.') }}</td>
+                    <td>{{ ucfirst($o->status_order) }}</td>
 
                     {{-- STATUS ORDER --}}
                     <td>

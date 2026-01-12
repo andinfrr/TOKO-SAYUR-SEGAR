@@ -41,6 +41,20 @@
     .riwayat-wrapper {
         max-width: 700px;
     }
+
+    .table th {
+    font-size: 0.85rem;
+    color: #2f7a2f;
+    }
+
+    .table td {
+        font-size: 0.85rem;
+    }
+
+    .table thead {
+        background-color: #f1f8f1;
+    }
+
 </style>
 
 <div class="container my-4 riwayat-wrapper">
@@ -66,39 +80,62 @@
 
     {{-- RIWAYAT --}}
     @foreach($statusList as $status)
-        <div id="status-{{ $status }}" class="status-section {{ $status != 'dikemas' ? 'd-none' : '' }}">
+<div id="status-{{ $status }}" 
+     class="status-section {{ $status != 'dikemas' ? 'd-none' : '' }}">
 
-            @if(isset($riwayat[$status]) && $riwayat[$status]->count())
-                @foreach($riwayat[$status] as $item)
-                    <div class="card riwayat-card mb-3">
-                        <div class="card-body">
+    @if(isset($riwayat[$status]) && $riwayat[$status]->count())
 
-                            <div class="title mb-1">
-                                {{ $item->nama_produk }}
-                            </div>
+        @foreach($riwayat[$status] as $idOrder => $items)
 
-                            <div class="text-muted small">
-                                Jumlah {{ $item->jumlah }} × 
-                                Rp {{ number_format($item->harga_satuan, 0, ',', '.') }}
-                            </div>
+          <div class="card riwayat-card mb-3">
+    <div class="card-body">
 
-                            <div class="price mt-1">
-                                Total: Rp {{ number_format($item->subtotal, 0, ',', '.') }}
-                            </div>
 
-                            <div class="text-muted small mt-1">
-                                {{ \Carbon\Carbon::parse($item->tanggal_order)->format('d M Y') }}
-                            </div>
-
-                        </div>
-                    </div>
-                @endforeach
-            @else
-                <p class="text-muted">Belum ada transaksi.</p>
-            @endif
-
+        <div class="text-muted small mb-3">
+            {{ \Carbon\Carbon::parse($items->first()->tanggal_order)->format('d M Y') }}
         </div>
-    @endforeach
+
+        <div class="table-responsive">
+            <table class="table table-sm align-middle">
+                <thead class="table-light">
+                    <tr>
+                        <th>Produk</th>
+                        <th class="text-center">Jumlah</th>
+                        <th class="text-end">Harga</th>
+                        <th class="text-end">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($items as $item)
+                        <tr>
+                            <td>{{ $item->nama_produk }}</td>
+                            <td class="text-center">{{ $item->jumlah }}</td>
+                            <td class="text-end">
+                                Rp {{ number_format($item->harga_satuan, 0, ',', '.') }}
+                            </td>
+                            <td class="text-end">
+                                Rp {{ number_format($item->subtotal, 0, ',', '.') }}
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end fw-bold mt-2">
+            Total: Rp {{ number_format($items->sum('subtotal'), 0, ',', '.') }}
+        </div>
+
+    </div>
+</div>
+        @endforeach
+
+    @else
+        <p class="text-muted">Belum ada transaksi.</p>
+    @endif
+
+</div>
+@endforeach
 
 </div>
 

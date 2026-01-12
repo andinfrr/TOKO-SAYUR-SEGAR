@@ -24,7 +24,7 @@ class RiwayatTransaksiController extends Controller
         ->get()
 
         // Mengelompokkan data transaksi berdasarkan status order
-        ->groupBy('status_order'); 
+        ->groupBy(['status_order', 'id_order']); 
 
     // Kirim data ke view riwayat.index
     return view('riwayat.index', compact('riwayat'));
