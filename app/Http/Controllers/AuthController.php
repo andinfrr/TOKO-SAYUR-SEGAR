@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -36,15 +35,15 @@ class AuthController extends Controller
         Session::put('customer', $customer);
         return redirect('/');
     }
-        // Gagal semua Kembali ke halaman login + pesan error
         return back()->with('error', 'Username atau password salah');
     }
 
     // FORM REGISTER
-    public function registerForm()
-    {
-        return view('auth.register');
-    }
+public function registerForm()
+{
+    return view('auth.register');
+}
+
 
     // PROSES REGISTER CUSTOMER
    public function register(Request $request)
@@ -74,6 +73,7 @@ class AuthController extends Controller
 
     return redirect('/login')->with('success', 'Register berhasil');
 }
+
 
 
     // LOGOUT
