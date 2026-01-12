@@ -48,11 +48,11 @@ Route::get('/register', [AuthController::class, 'registerForm']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::get('/logout', [AuthController::class, 'logout']);
 
-
+// andin nonaktif 
 // login penjual
-Route::get('/penjual/login', [PenjualAuthController::class, 'loginForm']);
-Route::post('/penjual/login', [PenjualAuthController::class, 'login']);
-Route::get('/penjual/logout', [PenjualAuthController::class, 'logout']);
+// Route::get('/penjual/login', [PenjualAuthController::class, 'loginForm']);
+// Route::post('/penjual/login', [PenjualAuthController::class, 'login']);
+// Route::get('/penjual/logout', [PenjualAuthController::class, 'logout']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 

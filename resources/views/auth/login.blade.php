@@ -23,10 +23,10 @@ serta pesan error jika proses login gagal.
       <div class="card-header text-center rounded-top-4"
            style="background:#dfecc8;">
         <h4 class="mb-1 fw-bold" style="color:#2f5d3a">
-          Login Customer
+          Login 
         </h4>
         <small style="color:#2f5d3a">
-          Selamat datang di Toko Sayur 🥬
+          Selamat datang di Toko Sayur 
         </small>
       </div>
 

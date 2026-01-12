@@ -1,10 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
- <!-- ================= STYLE DASHBOARD =================
-semua CSS buat dashboard penjual, biar tampilannya rapi, dan konsisten warna hijau. -->
-
 <style>
     /* ================= GLOBAL ================= */
     /* Styling judul */
@@ -159,10 +155,6 @@ semua CSS buat dashboard penjual, biar tampilannya rapi, dan konsisten warna hij
 </style>
 
 <h3 class="mb-4 text-success">Dashboard Penjual</h3>
-
- <!-- ================= RINGKASAN DATA =================
-Total order, total pendapatan, dan tombol tambah produk -->
-
 <div class="row mb-4 align-items-stretch">
 
     <!-- total order -->
@@ -174,7 +166,6 @@ Total order, total pendapatan, dan tombol tambah produk -->
             </div>
         </div>
     </div>
-
     <!-- total pendapatan -->
     <div class="col-md-4">
         <div class="card text-bg-success h-100">
