@@ -53,16 +53,8 @@ Route::get('/logout', [AuthController::class, 'logout']);
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
 // invoiceeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
-Route::get('/invoice', function () {
-    if (!session()->has('invoice')) {
-        return redirect('/');
-    }
+Route::get('/invoice', [OrderController::class, 'invoice']);
 
-    $invoice = session('invoice');
-    return view('invoice.index', [
-        'keranjang' => $invoice['items']
-    ]);
-});
 
 //KATEGORI NIH
 Route::get('/', [ProdukController::class, 'index'])->name('produk.index');

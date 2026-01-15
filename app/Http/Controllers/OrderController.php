@@ -37,7 +37,7 @@ class OrderController extends Controller
 
         // validasi input
         $request->validate([
-            'alamat' => 'required',
+            'id_alamat' => 'required',
             'metode_pembayaran' => 'required'
         ]);
 
@@ -58,6 +58,15 @@ class OrderController extends Controller
         // SIMPAN ORDER
         $kodeTransaksi = 'TRX-' . now()->format('YmdHis') . '-' . rand(100, 999);
 
+$alamat = AlamatCustomer::where('id_alamat', $request->id_alamat)->first();
+
+if (!$alamat) {
+    return back()->with('error', 'Alamat tidak ditemukan');
+}
+
+
+
+
         $idOrder = DB::table('order')->insertGetId([
             'kode_transaksi'     => $kodeTransaksi,
             'id_customer'        => $customer->id_customer,
@@ -67,7 +76,12 @@ class OrderController extends Controller
             'status_order'       => 'dikemas',
             'status_bayar'       => 'gagal',
             'metode_pembayaran'  => $request->metode_pembayaran,
-            'alamat_kirim'       => $request->alamat,
+            'alamat_kirim' => $alamat->provinsi . ', ' .
+                  $alamat->kota . ', ' .
+                  $alamat->kecamatan . ' - ' .
+                  $alamat->detail_alamat,
+
+
             'tgl_bayar'          => null
         ]);
 
@@ -86,11 +100,17 @@ class OrderController extends Controller
             'invoice' => [
                 'customer' => $customer,
                 'items'    => $keranjang,
-                'alamat'   => $request->alamat,
+                'alamat_kirim' => $alamat->provinsi . ', ' .
+                  $alamat->kota . ', ' .
+                  $alamat->kecamatan . ' - ' .
+                  $alamat->detail_alamat,
+
+
                 'metode'   => $request->metode_pembayaran,
                 'tanggal'  => now(),
                 'kode'     => $kodeTransaksi
-            ]
+            ],
+            'keranjang_invoice' => $keranjang
         ]);
 
         // KOSONGKAN KERANJANG
@@ -99,6 +119,19 @@ class OrderController extends Controller
         // REDIRECT KE INVOICE
         return redirect('/invoice')->with('success', 'Checkout berhasil');
     }
+    public function invoice()
+{
+    if (!session()->has('invoice')) {
+        return redirect('/');
+    }
+
+    return view('invoice.index', [
+        'keranjang' => session('keranjang_invoice')
+    ]);
+}
+
+
+
 
     // UPDATE STATUS ORDER (PENJUAL)
     public function updateStatus(Request $request, $id)
