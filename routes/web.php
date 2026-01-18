@@ -21,6 +21,9 @@ Route::get('/produk', [ProdukController::class, 'index']);
 Route::get('/kategori/{kategori}', [ProdukController::class, 'showKategori']);
 
 
+Route::get('/filter-produk', [ProdukController::class, 'filter']);
+
+
 // CRUD produk (penjual)
 Route::get('/produk/create', [ProdukController::class, 'create']);
 Route::post('/produk', [ProdukController::class, 'store']);

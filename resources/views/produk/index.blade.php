@@ -8,18 +8,22 @@
 <div class="kategori-wrapper mb-4">
     <ul class="kategori-list">
         <li>
-            <a href="/" 
-               class="kategori-item {{ request()->is('/') ? 'active' : '' }}">
-                Semua
-            </a>
+            <a href="#"
+   class="kategori-item"
+   data-kategori="Semua">
+    Semua
+</a>
+
         </li>
 
         @foreach($kategori as $k)
         <li>
-            <a href="/kategori/{{ $k->kategori }}"
-               class="kategori-item {{ request()->is('kategori/'.$k->kategori) ? 'active' : '' }}">
-                {{ $k->kategori }}
-            </a>
+            <a href="#"
+   class="kategori-item"
+   data-kategori="{{ $k->kategori }}">
+    {{ $k->kategori }}
+</a>
+
         </li>
         @endforeach
     </ul>
@@ -27,7 +31,10 @@
 @endisset
 
 
+<div class="row" id="produk-container">
+
 @foreach($produk as $p)
+
 <div class="col-md-3 mb-4 d-flex">
     {{-- CARD --}}
     <div class="card h-100 w-100 shadow-sm product-card">
@@ -84,5 +91,45 @@
 </div>
 @endforeach
 
+</div> {{-- end produk-container --}}
+
+
 </div>
+
+<script>
+document.querySelectorAll('.kategori-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        let kategori = this.dataset.kategori;
+
+        fetch(`/filter-produk?kategori=${kategori}`)
+            .then(res => res.json())
+            .then(data => {
+                let container = document.getElementById('produk-container');
+                container.innerHTML = '';
+
+                data.forEach(p => {
+                    container.innerHTML += `
+                        <div class="col-md-3 mb-4 d-flex">
+                            <div class="card h-100 w-100 shadow-sm product-card">
+                                <img src="/storage/${p.foto}"
+                                     class="card-img-top"
+                                     style="height:200px;object-fit:cover">
+
+                                <div class="card-body d-flex flex-column">
+                                    <h6 class="fw-bold">${p.nama_produk}</h6>
+                                    <p>Rp ${Number(p.harga).toLocaleString('id-ID')}</p>
+                                    <small>Stok: ${p.stok}</small>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            });
+    });
+});
+</script>
+
+
 @endsection
