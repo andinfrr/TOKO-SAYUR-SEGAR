@@ -30,6 +30,21 @@ class ProdukController extends Controller
         ]);
     }
 
+public function filter(Request $request)
+{
+    $kategori = $request->kategori;
+
+    if ($kategori == 'Semua') {
+        $produk = Produk::all();
+    } else {
+        $produk = Produk::where('kategori', $kategori)->get();
+    }
+
+    return response()->json($produk);
+}
+
+
+
     // UNTUK PENJUAL MENAMBAHKAN PRODUK
     public function create()
     {
