@@ -154,27 +154,85 @@
     }
 </style>
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <h3 class="mb-4 text-success">Dashboard Penjual</h3>
 <div class="row mb-4 align-items-stretch">
 
-    <!-- total order -->
-    <div class="col-md-4">
-        <div class="card text-bg-success h-100">
-            <div class="card-body">
-                <h5>Total Order</h5>
-                <h2>{{ $totalOrder }}</h2>
-            </div>
+
+@php
+    $namaBulan = [
+        1=>'Januari',2=>'Februari',3=>'Maret',4=>'April',
+        5=>'Mei',6=>'Juni',7=>'Juli',8=>'Agustus',
+        9=>'September',10=>'Oktober',11=>'November',12=>'Desember'
+    ];
+@endphp
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    @if ($prev)
+        <a href="?bulan={{ $prev->bulan }}&tahun={{ $prev->tahun }}"
+           class="btn btn-outline-success">
+            ← {{ $namaBulan[$prev->bulan] }} {{ $prev->tahun }}
+        </a>
+    @else
+    @endif
+
+    {{-- TENGAH --}}
+    
+    {{-- TENGAH --}}
+<div class="flex-grow-1">
+    <div class="btn btn-outline-success w-100 px-5 py-2 rounded-pill fw-bold position-relative">
+
+        {{ \Carbon\Carbon::createFromDate($selectedTahun, $selectedBulan, 1)->translatedFormat('F Y') }}
+
+        <form method="GET" action="{{ url('/dashboard') }}" class="m-0">
+
+            <input type="date"
+                   name="tanggal"
+                   value="{{ $selectedTanggal }}"
+                   class="position-absolute top-50 end-0 translate-middle-y opacity-0"
+                   style="width: 40px; height: 40px; cursor: pointer;"
+                   onchange="this.form.submit()">
+
+            <i class="bi bi-calendar-date position-absolute top-50 end-0 translate-middle-y me-3"
+               style="font-size: 18px; color: #198754; pointer-events: none;"></i>
+
+        </form>
+
+    </div>
+</div>
+
+
+      
+   
+
+    @if ($next)
+        <a href="?bulan={{ $next->bulan }}&tahun={{ $next->tahun }}"
+           class="btn btn-outline-success">
+            {{ $namaBulan[$next->bulan] }} {{ $next->tahun }} →
+        </a>
+    @endif
+</div>
+
+<div class="col-md-4">
+    <div class="card text-bg-success h-100">
+        <div class="card-body">
+            <h5>Total Order</h5>
+            <h2>{{ $totalOrder }}</h2>
         </div>
     </div>
-    <!-- total pendapatan -->
-    <div class="col-md-4">
-        <div class="card text-bg-success h-100">
-            <div class="card-body">
-                <h5>Total Pendapatan</h5>
-                <h2>Rp {{ number_format($totalPendapatan) }}</h2>
-            </div>
+</div>
+
+<div class="col-md-4">
+    <div class="card text-bg-success h-100">
+        <div class="card-body">
+            <h5>Total Pendapatan</h5>
+            <h2>Rp {{ number_format($totalPendapatan) }}</h2>
         </div>
     </div>
+</div>
+
+
+   
 
     {{-- TOMBOL TAMBAH PRODUK --}}
     <div class="col-md-4">
