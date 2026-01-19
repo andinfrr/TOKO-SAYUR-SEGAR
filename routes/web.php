@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PenjualAuthController;
 use App\Http\Controllers\RiwayatTransaksiController;
 use App\Http\Controllers\AlamatCustomerController;
+use App\Http\Controllers\AccountController;
 use Illuminate\Support\Facades\Http;
 
 // Home & list produk
@@ -102,3 +103,8 @@ Route::get('/api/districts/{id}', function ($id) {
         "https://emsifa.github.io/api-wilayah-indonesia/api/districts/{$id}.json"
     )->json();
 });
+
+//akun
+Route::get('/akun', [AccountController::class, 'index']);
+Route::post('/akun/update', [AccountController::class, 'update']);
+
