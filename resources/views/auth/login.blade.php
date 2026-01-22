@@ -60,6 +60,14 @@ serta pesan error jika proses login gagal.
                    required>
           </div>
 
+          <div class="text-end mb-4">
+            <a href="#"
+               class="text-decoration-none"
+               style="color:#4caf50; font-size: 14px;">
+              Lupa password?
+            </a>
+          </div>
+
           {{-- Tombol untuk proses login --}}
           <button class="btn btn-success w-100 py-2 fw-bold rounded-pill">
             Login
@@ -71,6 +79,7 @@ serta pesan error jika proses login gagal.
       {{-- Bagian footer halaman login --}}
       <div class="card-footer bg-light text-center rounded-bottom-4">
         <small style="color:#2f5d3a">
+          
           Belum punya akun?
           <a href="/register"
              class="fw-bold text-decoration-none"
